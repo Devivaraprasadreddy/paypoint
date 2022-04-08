@@ -33,7 +33,8 @@ const connection=mongoose.connection;
 const Transaction=require('./models/Transaction_Schema.js');
 const usercapstone=require('./models/user_Schema.js');
 const Loyality_Transaction=require('./models/Loyality_Schema.js');
-
+const logindata=require('./models/loginschema.js');
+const admindata=require('./models/admin_Schema.js');
 
 
 
@@ -66,6 +67,49 @@ app.post('/sendData',function(req,res){
         }
     })
    
+});
+
+//login checking
+
+app.post('/logindata',function(req,res){
+    console.log(req.body);
+    assignment.findOne({email:req.body.email,password:req.body.password},function(err,docs){
+        if(err || docs==null)
+        {
+            //console.log(err)
+            res.sendStatus(500);
+        }
+        else{
+            res.send(docs);
+        }
+    })
+});
+
+app.post('/admindata',function(req,res){
+    console.log(req.body);
+    admindata.findOne({email:req.body.email,password:req.body.password},function(err,docs){
+        if(err || docs==null)
+        {
+            res.sendStatus(500);
+        }
+        else{
+            res.send(docs);
+        }
+    })
+});
+
+app.get('/getassignmentdata',(req,res)=>{
+    assignmentdata.find(function(err,result){
+        if(err||result==null)
+        {
+            console.log(err);
+        }
+        else if(result!=undefined){
+            console.log(result);
+            res.send(result);
+
+        }
+    })
 });
 
 
@@ -186,5 +230,5 @@ app.get('/getallusers',function(req,res){
 // })
 
 
-
+//it is running in localhost server
 app.listen(3000, ()=> console.log("Successfully Server Started at 3000!"));

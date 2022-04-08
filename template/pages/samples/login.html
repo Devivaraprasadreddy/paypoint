@@ -53,18 +53,18 @@
     <div class="container-scroller">
       <div class="container-fluid page-body-wrapper full-page-wrapper">
         <div class="row w-100 m-0">
-          <div class="content-wrapper full-page-wrapper d-flex align-items-center auth login-bg">
+          <div class="content-wrapper full-page-wrapper d-flex align-items-center">
             <div class="card col-lg-6 mx-auto">
               <div class="card-body px-5 py-5">
                 <h3 class="card-title text-left mb-3">Login</h3>
                 <form>
                   <div class="form-group">
                     <label>Username or email *</label>
-                    <input type="text" placeholder='Username'class="form-control p_input">
+                    <input type="text" placeholder='Username'class="form-control p_input" id="email_id">
                   </div>
                   <div class="form-group">
                     <label>Password *</label>
-                    <input type="text" placeholder='Password'class="form-control p_input">
+                    <input type="password" placeholder='Password'class="form-control p_input" id="pwd_id">
                   </div>
                   <div class="form-group d-flex align-items-center justify-content-between">
                     <div class="form-check">
@@ -74,7 +74,7 @@
                     <a href="/forgot" class="forgot-pass">Forgot password</a>
                   </div>
                   <div class="text-center">
-                    <button type="submit" class="btn btn-primary btn-block enter-btn">Login</button>
+                    <button type="button" class="btn btn-primary btn-block enter-btn" onclick="logindata()">Login</button>
                   </div>
                   <p class="sign-up">Don't have an Account?<a href="/signup"> Sign Up</a></p>
                 </form>
@@ -97,8 +97,72 @@
     <script src="../../assets/js/off-canvas.js"></script>
     <script src="../../assets/js/hoverable-collapse.js"></script>
     <script src="../../assets/js/misc.js"></script>
-    <script src="../../assets/js/settings.js"></script>
+  <script src="../../assets/js/settings.js"></script>
     <script src="../../assets/js/todolist.js"></script>
+
+
     <!-- endinject -->
+
+
+    <script>
+      function logindata(){
+        var email=document.getElementById('email_id').value;
+        var password=document.getElementById("pwd_id").value;
+
+        if(email_id.length<=0){
+      // alert("username is required");
+      document.getElementById("message1").innerHTML="!Please enter your email"
+      email_id.focus();
+      
+    }
+    else if(pwd_id.length<=0){
+      document.getElementById("message2").innerHTML="!Please enter password"
+      pwd_id.focus();
+    }
+    if(email.length!=0 && password.length!=0){
+      var data = {
+        email : email,
+        password : password
+      }
+    console.log(data);
+    }
+
+    if(email=='' && password==''){
+      alert("please enter all credentials");
+    }
+    else if(email=='')
+    {
+      alert("Please Enter Email!");
+    }
+    else if(password==''){
+      alert("Please Enter Password!");
+
+    }
+    else {
+      alert("Login Successfull");
+      
+
+    }
+
+        fetch('/loginData',{
+      method:'POST',
+      headers: {
+        'Content-Type' : 'application/json'
+      },
+      body: JSON.stringify(data)
+    })
+    .then(response => response.json())
+    .then(data => {
+      console.log('success:', data);
+      // console.log("Hai")
+      // console.log(data)
+      location.href="/home"
+    })
+    .catch((error)=>{
+        alert("Not Valid")
+      })
+  };
+
+    </script>
   </body>
 </html>
