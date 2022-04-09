@@ -1,6 +1,18 @@
 var express = require("express");
 var app = express();
 app.path = require("path");
+var sessions = require('express-session')
+
+app.use(
+  sessions({
+      cookieName: "sessions",
+      secret: "blargadeeblargblarg",
+      saveUninitialized: true,
+      resave: false,
+  })  
+);
+
+
 app.use(express.json());
 app.use(express.urlencoded({extended:false}));
 // app.use(express.static("contents"));
@@ -72,7 +84,7 @@ app.post('/sendData',function(req,res){
 //login checking
 
 app.post('/logindata',function(req,res){
-    console.log(req.body);
+    //console.log(req.body);
     assignment.findOne({email:req.body.email,password:req.body.password},function(err,docs){
         if(err || docs==null)
         {
@@ -80,6 +92,7 @@ app.post('/logindata',function(req,res){
             res.sendStatus(500);
         }
         else{
+            req.session.users = docs;
             res.send(docs);
         }
     })
@@ -190,8 +203,20 @@ app.get('/terms',function(req,res){
 
 //home page
 app.get('/home',function(req,res){
-    res.sendFile(__dirname+'/index.html');
+    session = req.session;
+    if(session.users){
+        res.sendFile(__dirname+'/index.html');
+    }else{
+        res.redirect("/login");
+    }
+    
 });
+
+// Logout pages
+app.get('/logout',function(req, res){
+    req.session.destroy();
+    res.redirect("/login");
+})
 
 //forgot 
 app.get('/forgot',function(req,res){
