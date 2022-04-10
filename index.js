@@ -1,6 +1,13 @@
+// npm install express and Node
+
 var express = require("express");
 var app = express();
 app.path = require("path");
+
+// npm install express-session
+
+//sessions
+
 var sessions = require('express-session')
 
 app.use(
@@ -15,9 +22,13 @@ app.use(
 
 app.use(express.json());
 app.use(express.urlencoded({extended:false}));
+
 // app.use(express.static("contents"));
 var path = require('path')
-const assignment = require('./models/schema.js');
+
+
+
+//css path creation 
 
 app.use(express.static(path.join(__dirname, 'assets')));
 app.use(express.static(path.join(__dirname, '')));
@@ -32,6 +43,8 @@ const mongoose = require("mongoose");
 
 
 // const { Transaction } = require("mongodb");
+
+//mongoDB database url
 mongoose.connect("mongodb+srv://devivaraprasad:dsp9391@cluster0.syjej.mongodb.net/capstoneproject?retryWrites=true&w=majority",{
     useUnifiedTopology : true,
     useNewUrlParser : true,
@@ -42,6 +55,9 @@ mongoose.connect("mongodb+srv://devivaraprasad:dsp9391@cluster0.syjej.mongodb.ne
 });
 const connection=mongoose.connection;
 
+
+//calling the all schemas
+const assignment = require('./models/schema.js');
 const Transaction=require('./models/Transaction_Schema.js');
 const usercapstone=require('./models/user_Schema.js');
 const Loyality_Transaction=require('./models/Loyality_Schema.js');
@@ -49,6 +65,7 @@ const logindata=require('./models/loginschema.js');
 const admindata=require('./models/admin_Schema.js');
 
 
+//post the data to database 
 
 app.post('/sendData',function(req,res){
     //res.sendFile(__dirname + '/pages/sample.html');
@@ -83,6 +100,8 @@ app.post('/sendData',function(req,res){
 
 //login checking
 
+//post the data to database
+
 app.post('/logindata',function(req,res){
     //console.log(req.body);
     assignment.findOne({email:req.body.email,password:req.body.password},function(err,docs){
@@ -98,6 +117,7 @@ app.post('/logindata',function(req,res){
     })
 });
 
+//post the admin data to database
 app.post('/admindata',function(req,res){
     console.log(req.body);
     admindata.findOne({email:req.body.email,password:req.body.password},function(err,docs){
@@ -111,6 +131,8 @@ app.post('/admindata',function(req,res){
     })
 });
 
+
+//to get the user data in database
 app.get('/getassignmentdata',(req,res)=>{
     assignmentdata.find(function(err,result){
         if(err||result==null)
@@ -177,6 +199,7 @@ app.get('/getassignmentdata',(req,res)=>{
 
 
 // Dashboard page
+//frontend pages js
 app.get("/", function(req,res){
     res.sendFile(__dirname + "/index2.html");
 });
@@ -212,11 +235,17 @@ app.get('/home',function(req,res){
     
 });
 
+
 // Logout pages
 app.get('/logout',function(req, res){
     req.session.destroy();
     res.redirect("/login");
 })
+
+app.get('/admin',function(req,res){
+    res.sendFile(__dirname + '/template/pages/samples/adminpannel.html');
+})
+
 
 //forgot 
 app.get('/forgot',function(req,res){
@@ -254,6 +283,23 @@ app.get('/getallusers',function(req,res){
 //     Transaction.aggregate({$group:{_id:{""}}})
 // })
 
+
+//user dashboard
+app.get("/dashboard", function(req,res){
+    res.redirect("/home");
+});
+app.get("/addcreditaccount", function(req,res){
+    res.sendFile(__dirname + "/template/pages/forms/basic_elements.html");
+});
+app.get("/monthlytransaction", function(req,res){
+    res.sendFile(__dirname + "/template/pages/tables/basic-table.html");
+});
+app.get("/transactionhistory", function(req,res){
+    res.sendFile(__dirname + "/template/pages/icons/mdi.html");
+});
+app.get("/credpoints", function(req,res){
+    res.sendFile(__dirname + "/template/pages/charts/chartjs.html");
+});
 
 //it is running in localhost server
 app.listen(3000, ()=> console.log("Successfully Server Started at 3000!"));
