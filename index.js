@@ -134,7 +134,7 @@ app.post('/admindata',function(req,res){
 
 //to get the user data in database
 app.get('/getassignmentdata',(req,res)=>{
-    assignmentdata.find(function(err,result){
+    assignment.find(function(err,result){
         if(err||result==null)
         {
             console.log(err);
@@ -201,7 +201,7 @@ app.get('/getassignmentdata',(req,res)=>{
 // Dashboard page
 //frontend pages js
 app.get("/", function(req,res){
-    res.sendFile(__dirname + "/index2.html");
+    res.sendFile(__dirname + "/template/pages/samples/home.html");
 });
 
 //login page
@@ -228,7 +228,7 @@ app.get('/terms',function(req,res){
 app.get('/home',function(req,res){
     session = req.session;
     if(session.users){
-        res.sendFile(__dirname+'/index.html');
+        res.sendFile(__dirname+'/user.html');
     }else{
         res.redirect("/login");
     }
@@ -239,7 +239,7 @@ app.get('/home',function(req,res){
 // Logout pages
 app.get('/logout',function(req, res){
     req.session.destroy();
-    res.redirect("/login");
+    res.redirect("/index.html");
 })
 
 app.get('/admin',function(req,res){
