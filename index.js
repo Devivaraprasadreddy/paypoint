@@ -7,7 +7,7 @@ app.path = require("path");
 // npm install express-session
 
 //sessions
-
+ 
 var sessions = require('express-session')
 
 app.use(
@@ -18,6 +18,8 @@ app.use(
       resave: false,
   })  
 );
+
+var session;
 
 
 app.use(express.json());
@@ -103,6 +105,7 @@ app.post('/sendData',function(req,res){
 //post the data to database
 
 app.post('/logindata',function(req,res){
+    session=req.session;
     //console.log(req.body);
     assignment.findOne({email:req.body.email,password:req.body.password},function(err,docs){
         if(err || docs==null)
@@ -111,7 +114,9 @@ app.post('/logindata',function(req,res){
             res.sendStatus(500);
         }
         else{
-            req.session.users = docs;
+           session.user=docs;
+
+
             res.send(docs);
         }
     })
@@ -227,7 +232,7 @@ app.get('/terms',function(req,res){
 //home page
 app.get('/home',function(req,res){
     session = req.session;
-    if(session.users){
+    if(session.user){
         res.sendFile(__dirname+'/user.html');
     }else{
         res.redirect("/login");
@@ -239,7 +244,7 @@ app.get('/home',function(req,res){
 // Logout pages
 app.get('/logout',function(req, res){
     req.session.destroy();
-    res.redirect("/index.html");
+    res.redirect("/");
 })
 
 app.get('/admin',function(req,res){
@@ -268,15 +273,23 @@ app.get('/getalltransactions',function(req,res){
 
 //it will gets users data
 app.get('/getallusers',function(req,res){
-    usercapstone.find({},function(err,result){
-        if(err){
-            console.log("err");
-        }
-        else{
-            //console.log("result");
-            res.send(result)
-        }
-    });
+    session = req.session;
+    if(session.user){
+        assignment.find({"_id":session.user._id},function(err,result){
+            if(err){
+                console.log("err");
+            }
+            else{
+                //console.log("result");
+                res.send(result)
+            }
+        });
+    }
+    else{
+        console.log(err);
+    }
+
+  
 });
 
 // app.get('/getusersaggregate', function(req,res){
@@ -300,6 +313,58 @@ app.get("/transactionhistory", function(req,res){
 app.get("/credpoints", function(req,res){
     res.sendFile(__dirname + "/template/pages/charts/chartjs.html");
 });
+
+
+//admin dashboard
+
+app.get('/usertables',function(req,res){
+    res.sendFile(__dirname + '/template/pages/tables/basic-table.html');
+});
+
+app.get('/charts',function(req,res){
+    res.sendFile(__dirname + '/template/pages/charts/chartjs.html');
+});
+
+app.get('/admin/dashboard',function(req,res){
+    res.sendFile(__dirname + '/template/pages/samples/adminpannel.html');
+});
+
+
+app.post('/user_addaccount',function(req,res){
+//    console.log(req.session);
+    session = req.session;
+    if(session.user){
+        // console.log(req.body);
+    // console.log(session.user);
+    var data={
+        Card_Name:req.body.cardholder_name,
+        Card_Number:req.body.cardnumber,
+        cvv:req.body.cvv,
+        Month:req.body.ExpirationMonth,
+        Year:req.body.year,
+        balance:5000
+
+    }
+    var filter={
+        "_id":session.user._id
+
+    }
+
+    assignment.findOneAndUpdate(filter,data,{new:true},function(err,docs){
+        if(err){
+            console.log(err);
+        }
+        else{
+            console.log(docs);
+        }
+    });
+
+
+    }else{
+        console.log("err");
+    }
+});
+
 
 //it is running in localhost server
 app.listen(3000, ()=> console.log("Successfully Server Started at 3000!"));

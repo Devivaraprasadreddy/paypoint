@@ -35,23 +35,32 @@ const usercapstone=new mongoose.Schema({
     },
     wallet:{
         type:Number,
-        required:true
+       
     },
     Card_Name:{
         type:String,
-        required:true
+       
     },
     Card_Number:{
         type:String,
-        required:true
+      
     },
     Loyality_Points:{
         type:Number,
-        required:true
+       
     },
-    Valid_Till_Upto:{
+    cvv:{
+        type:String
+    },
+    Month:{
         type:String,
-        required:true
+        
+    },
+    Year:{
+        type:String
+    },
+    balance:{
+        type:Number
     },
 });
 

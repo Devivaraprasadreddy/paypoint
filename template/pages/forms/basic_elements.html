@@ -97,17 +97,37 @@
               <span class="menu-title">Add Credit Account</span>
               <!-- <i class="menu-arrow"></i> -->
             </a>
-           
+            <!-- <div class="collapse" id="ui-basic">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item"> <a class="nav-link" href="../../pages/ui-features/buttons.html">Buttons</a></li>
+                <li class="nav-item"> <a class="nav-link" href="../../pages/ui-features/dropdowns.html">Dropdowns</a></li>
+                <li class="nav-item"> <a class="nav-link" href="../../pages/ui-features/typography.html">Typography</a></li>
+              </ul>
+            </div> -->
           </li>
-          <li class="nav-item menu-items">
+          <!-- <li class="nav-item menu-items">
             <a class="nav-link" href="/transactionhistory">
               <span class="menu-icon">
                 <i class="mdi mdi-contacts"></i>
               </span>
               <span class="menu-title">Transcation History</span>
             </a>
-          </li>
-         
+          </li> -->
+          <!-- <li class="nav-item menu-items">
+            <a class="nav-link" href="../../pages/forms/basic_elements.html">
+              <span class="menu-icon">
+                <i class="mdi mdi-playlist-play"></i>
+              </span>
+              <span class="menu-title">Transcation History</span>
+            </a>
+          </li> -->
+          <li class="nav-item menu-items">
+            <a class="nav-link" href="/transactionhistory">
+              <span class="menu-icon">
+                <i class="mdi mdi-playlist-play"></i>
+              </span>
+              <span class="menu-title">Transcation History</span>
+            </a>
           <li class="nav-item menu-items">
             <a class="nav-link" href="/monthlytransaction">
               <span class="menu-icon">
@@ -124,18 +144,8 @@
               <span class="menu-title">Cred Points History</span>
             </a>
           </li>
-          
-            <div class="collapse" id="auth">
-              <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="../../pages/samples/blank-page.html"> Blank Page </a></li>
-                <li class="nav-item"> <a class="nav-link" href="../../pages/samples/error-404.html"> 404 </a></li>
-                <li class="nav-item"> <a class="nav-link" href="../../pages/samples/error-500.html"> 500 </a></li>
-                <li class="nav-item"> <a class="nav-link" href="../../pages/samples/login.html"> Login </a></li>
-                <li class="nav-item"> <a class="nav-link" href="../../pages/samples/register.html"> Register </a></li>
-              </ul>
-            </div>
-          </li>
-          
+       
+       
         </ul>
       </nav>
       <!-- partial -->
@@ -151,7 +161,9 @@
             </button>
             <ul class="navbar-nav w-100">
               <li class="nav-item w-100">
-                
+                <!-- <form class="nav-link mt-2 mt-md-0 d-none d-lg-flex search">
+                  <input type="text" class="form-control" placeholder="Search products">
+                </form> -->
               </li>
             </ul>
             <ul class="navbar-nav navbar-nav-right">
@@ -338,15 +350,18 @@
             
              
               <nav aria-label="breadcrumb">
-                
+                <!-- <ol class="breadcrumb">
+                  <li class="breadcrumb-item"><a href="#">Forms</a></li>
+                  <li class="breadcrumb-item active" aria-current="page">Form elements</li>
+                </ol> -->
               </nav>
             </div>
             <div class="row">
               <div class="col-md- grid 8-margin stretch-card">
                 <div class="card">
                   <div class="card-body">
-                    <h4 class="card-title">New Payment Method</h4>
-                    <div class="col-sm-5">
+                    <h4 class="card-title">ADD ACCOUNT</h4>
+                    <!-- <div class="col-sm-5">
                       <div class="form-check">
                         <label class="form-check-label">
                           <input type="radio" class="form-check-input" name="membershipRadios" id="membershipRadios1" value="" checked> Credit Card </label>
@@ -357,41 +372,111 @@
                         <label class="form-check-label">
                           <input type="radio" class="form-check-input" name="membershipRadios" id="membershipRadios2" value="option2"> PayPal </label>
                       </div>
-                    </div>
-                    <br>
+                    </div> -->
+                    <!-- <br> -->
                     <p class="card-description"> Please enter your credit card deatils below and confirm your payment.Your credit card will be added to your invoicely account automatically. </p>
-                    <form class="forms-sample">
+                    <form>
                       <div class="form-group">
                         <label for="exampleInputUsername1">Cardholder Name</label>
-                        <input type="text" class="form-control" id="example cardholder" placeholder="Cardholder Name">
+                        <input type="text" class="form-control" id="cardholder_name" placeholder="Cardholder Name">
                       </div>
                       <div class="form-group">
                         <label for="exampleInputEmail1">Card Number</label>
-                        <input type="card Number" class="form-control" id="example card number" placeholder="Card Number">
+                        <input type="tel" data-maxlength="12" oninput="this.value=this.value.slice(0,this.dataset.maxlength)" class="form-control" id="card number" placeholder="Card Number"/>
                       </div>
                       <div class="form-group">
                         <label for="exampleInputPassword1">CVV</label>
-                        <input type="CVV" class="form-control" id="exampleCVV" placeholder="CVV">
+                        <input type="tel" data-maxlength="3" oninput="this.value=this.value.slice(0,this.dataset.maxlength)" class="form-control" id="CVV" placeholder="CVV"/>
                       </div>
                       <div class="form-group">
                         <label for="exampleInputConfirmPassword1">Expiration Month</label>
-                        <input type="month date" class="form-control" id="examplemonth" placeholder="Expiration Month">
+                        <!-- <input type="number" maxlength="2" class="form-control" id="Expiration Month" placeholder="Expiration Month"> -->
+                        <input type="tel" data-maxlength="2" oninput="this.value=this.value.slice(0,this.dataset.maxlength)" class="form-control" id="Expiration Month" placeholder="Expiration Month"/>
                       </div>
                       <div class="form-group">
                         <label for="exampleInputConfirmPassword1">Expiration Year</label>
-                        <input type="year" class="form-control" id="exampleyear" placeholder="Expiration Year">
+                        <!-- <input type="number" maxlength="4" class="form-control" > -->
+                        <input type="tel" data-maxlength="4" oninput="this.value=this.value.slice(0,this.dataset.maxlength)" class="form-control" id="Expiration Year" placeholder="Expiration Year"/>
                       </div>
-                      <div class="form-check form-check-flat form-check-primary">
-                        <label class="form-check-label">
-                          <input type="checkbox" class="form-check-input"> Remember me </label>
-                      </div>
-                      <button type="submit" class="btn btn-primary mr-2">Submit</button>
+                      <button type="button" onclick="insertdata()" class="btn btn-primary mr-2">Submit</button>
                       <button class="btn btn-dark">Cancel</button>
                     </form>
                   </div>
                 </div>
               </div>
               <br></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
               <br></br>
               <div class="col-lg-12 grid-margin stretch-card">
                 <div class="card">
@@ -508,43 +593,105 @@
                   </div>
                 </div>
               </div>
+              
                   <div class="card-body">
-                                  <form>
+                   
+                    <form>
                       <div class="row">
                         <div class="col-md-6">
                           <div class="form-group">
-                           
-                          </div>
-                        </div>
-                        
-                      </div>
-                      <div class="row">
-                                                <div class="col-md-6">
-                          <div class="form-group row">
-                         
-                          </div>
-                        </div>
-                      </div>
-                     
-                      <div class="row">
-                        <div class="col-md-6">
-                          <div class="form-group row">
-                          
+                            
                           </div>
                         </div>
                        
                       </div>
                       <div class="row">
-                     
+                       
+                        <div class="col-md-6">
+                          <div class="form-group row">
+                            
+                          </div>
+                        </div>
+                      </div>
+                      
+                      <div class="row">
+                        <div class="col-md-6">
+                          <div class="form-group row">
+                            
+                          </div>
+                        </div>
+                      
                       </div>
                       <div class="row">
-                  
+                    
+                      </div>
+                      <div class="row">
+                       
                       </div>
                     </form>
                   </div>
                 </div>
               </div>
-              
+              <!-- <div class="col-md-6 grid-margin stretch-card">
+                <div class="card">
+                  <div class="card-body">
+                    <h4 class="card-title">Select 2</h4>
+                    <div class="form-group">
+                      <label>Single select box using select 2</label>
+                      <select class="js-example-basic-single" style="width:100%">
+                        <option value="AL">Alabama</option>
+                        <option value="WY">Wyoming</option>
+                        <option value="AM">America</option>
+                        <option value="CA">Canada</option>
+                        <option value="RU">Russia</option>
+                      </select>
+                    </div>
+                    <div class="form-group">
+                      <label>Multiple select using select 2</label>
+                      <select class="js-example-basic-multiple" multiple="multiple" style="width:100%">
+                        <option value="AL">Alabama</option>
+                        <option value="WY">Wyoming</option>
+                        <option value="AM">America</option>
+                        <option value="CA">Canada</option>
+                        <option value="RU">Russia</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6 grid-margin stretch-card">
+                <div class="card">
+                  <div class="card-body">
+                    <h4 class="card-title">Typeahead</h4>
+                    <p class="card-description"> A simple suggestion engine </p>
+                    <div class="form-group row">
+                      <div class="col">
+                        <label>Basic</label>
+                        <div id="the-basics">
+                          <input class="typeahead" type="text" placeholder="States of USA">
+                        </div>
+                      </div>
+                      <div class="col">
+                        <label>Bloodhound</label>
+                        <div id="bloodhound">
+                          <input class="typeahead" type="text" placeholder="States of USA">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div> -->
+          <!-- content-wrapper ends -->
+          <!-- partial:../../partials/_footer.html -->
+          <!-- <footer class="footer">
+            <div class="d-sm-flex justify-content-center justify-content-sm-between">
+              <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">Copyright © bootstrapdash.com 2020</span>
+              <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center"> Free <a href="https://www.bootstrapdash.com/bootstrap-admin-template/" target="_blank">Bootstrap admin templates</a> from Bootstrapdash.com</span>
+            </div> -->
+          <!-- </footer> -->
+          <!-- partial -->
         </div>
         <!-- main-panel ends -->
       </div>
@@ -552,6 +699,9 @@
     </div>
     <!-- container-scroller -->
     <!-- plugins:js -->
+    <script>
+      
+    </script>
     <script src="../../assets/vendors/js/vendor.bundle.base.js"></script>
     <!-- endinject -->
     <!-- Plugin js for this page -->
@@ -571,4 +721,51 @@
     <script src="../../assets/js/select2.js"></script>
     <!-- End custom js for this page -->
   </body>
+  <script>
+    function insertdata(){
+      var name = document.getElementById('cardholder_name').value
+      if(name.length <= 4){
+        alert("please enter the cardholder name")
+      }
+      var cardnumber = document.getElementById('card number').value
+      if(cardnumber.length <= 11){
+        alert("please enter valid card number")
+      }
+      var cvv = document.getElementById('CVV').value
+      if(cvv.length <= 2){
+        alert("please enter valid CVV number")
+      }
+      var ExpirationMonth = document.getElementById('Expiration Month').value
+      if(ExpirationMonth.length <= 1){
+        alert("please enter valid Expiration Month")
+      }
+     
+      var year = document.getElementById('Expiration Year').value
+      if(year.length <= 3){
+        alert("please enter valid expiration year")
+      }
+      // console.log(name+"  "+ cardnumber+"  "+ cvv+"  "+ ExpirationMonth+"  "+ year)
+      if((name.length >= 4) && (cardnumber.length == 12) && (cvv.length == 3) && (ExpirationMonth.length == 2) && (year.length == 4)){
+        var data = {
+          cardholder_name : name,
+          cardnumber: cardnumber,
+          cvv:cvv,
+          ExpirationMonth:ExpirationMonth,
+          year:year
+        }
+        fetch("/user_addaccount",
+        {
+            method: "POST",
+            headers: {
+              'Accept': 'application/json',
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        })
+        .then(function(res){ return res.json(); })
+        .then(function(data){ alert( JSON.stringify( data ) ) })
+      }
+      
+    }
+  </script>
 </html>
