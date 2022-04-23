@@ -25,8 +25,8 @@
       <!-- partial:../../partials/_sidebar.html -->
       <nav class="sidebar sidebar-offcanvas" id="sidebar">
         <div class="sidebar-brand-wrapper d-none d-lg-flex align-items-center justify-content-center fixed-top">
-          <!-- <a class="sidebar-brand brand-logo" href="../../index.html"><img src="../../assets/images/logo.svg" alt="logo" /></a> -->
-          <a class="sidebar-brand brand-logo-mini" href="../../index.html"><img src="../../assets/images/logo-mini.svg" alt="logo" /></a>
+
+          <a href="/home" style="color: white; text-decoration: none;">PAYPOINT</a>
         </div>
         <ul class="nav">
           <li class="nav-item profile">
@@ -37,7 +37,7 @@
                   <span class="count bg-success"></span>
                 </div>
                 <div class="profile-name">
-                  <h5 class="mb-0 font-weight-normal" id="u_name">kusuma</h5>
+                  <h5 class="mb-0 font-weight-normal" id="u_name"></h5>
                   <!-- <span>Gold Member</span> -->
                 </div>
               </div>
@@ -90,7 +90,7 @@
             </a>
           </li>
           <li class="nav-item menu-items">
-            <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
+            <a class="nav-link"href="/addcreditaccount">
               <span class="menu-icon">
                 <i class="mdi mdi-laptop"></i>
               </span>
@@ -141,7 +141,7 @@
               <span class="menu-icon">
                 <i class="mdi mdi-chart-bar"></i>
               </span>
-              <span class="menu-title">Cred Points History</span>
+              <span class="menu-title">Pay Bills</span>
             </a>
           </li>
        
@@ -305,7 +305,7 @@
                 <a class="nav-link" id="profileDropdown" href="#" data-toggle="dropdown">
                   <div class="navbar-profile">
                     <img class="img-xs rounded-circle" src="../../assets/images/faces/face15.jpg" alt="">
-                    <p class="mb-0 d-none d-sm-block navbar-profile-name" id="un_name">kusuma</p>
+                    <p class="mb-0 d-none d-sm-block navbar-profile-name" id="un_name"></p>
                     <i class="mdi mdi-menu-down d-none d-sm-block"></i>
                   </div>
                 </a>
@@ -404,8 +404,7 @@
                   </div>
                 </div>
               </div>
-              <br>
-            </div>
+              <br></div>
               <br></br>
               <div class="col-lg-12 grid-margin stretch-card">
                 <div class="card">
@@ -649,6 +648,7 @@
     <script src="../../assets/js/typeahead.js"></script>
     <script src="../../assets/js/select2.js"></script>
     <!-- End custom js for this page -->
+    
   </body>
   <script>
     function insertdata(){
@@ -696,9 +696,13 @@
       }
       
     }
+    
 
 
-    const api_url = 
+
+// call the function
+// api url
+const api_url = 
       "http://localhost:3000/getallusers";
   
 // Defining async function
@@ -724,7 +728,6 @@ async function getapi(url) {
             // document.getElementById("referralid").innerHTML = data[0].refferal_code;
             document.getElementById("u_name").innerHTML = data[0].name;
             document.getElementById("un_name").innerHTML = data[0].name;
-            // document.getElementById("t_bal").innerHtml = data[0].balance;
 
             
             
@@ -735,9 +738,6 @@ async function getapi(url) {
 }
 // Calling that async function
 getapi(api_url);
-
-  
-              
   </script>
 
 </html>

@@ -65,6 +65,7 @@ const usercapstone=require('./models/user_Schema.js');
 const Loyality_Transaction=require('./models/Loyality_Schema.js');
 const logindata=require('./models/loginschema.js');
 const admindata=require('./models/admin_Schema.js');
+const cash = require('./models/cash_schema.js');
 
 
 //post the data to database 
@@ -100,6 +101,36 @@ app.post('/sendData',function(req,res){
    
 });
 
+
+app.post('/cashdata',function(req,res){
+    console.log(req.body);
+
+    var obj = new cash({
+        accountholdername:req.body.accountholdername,
+        accountnumber:req.body.accountnumber,
+        branchname:req.body.branchname,
+        ifsccode:req.body.ifsccode,
+        amount:req.body.amount,
+    })
+    cash.find({},function(err,docs){
+        if(err || docs==null){
+            console.log(err)
+            obj.save(function(err,result){
+                if(results){
+                    console.log("results"+ results);
+                    res.send(result)
+                }
+                else{
+                    console.log(err)
+                    res.send(err);
+                }
+            })
+        }
+        else{
+            res.sendStatus(500)
+        }
+    })
+})
 //login checking
 
 //post the data to database

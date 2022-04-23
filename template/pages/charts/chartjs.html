@@ -8,90 +8,621 @@
     <!-- plugins:css -->
     <link rel="stylesheet" href="../../assets/vendors/mdi/css/materialdesignicons.min.css">
     <link rel="stylesheet" href="../../assets/vendors/css/vendor.bundle.base.css">
-    
+    <!-- endinject -->
+    <!-- Plugin css for this page -->
+    <link rel="stylesheet" href="../../assets/vendors/select2/select2.min.css">
+    <link rel="stylesheet" href="../../assets/vendors/select2-bootstrap-theme/select2-bootstrap.min.css">
+    <!-- End plugin css for this page -->
+    <!-- inject:css -->
+    <!-- endinject -->
+    <!-- Layout styles -->
     <link rel="stylesheet" href="../../assets/css/style.css">
     <!-- End layout styles -->
-    <link rel="shortcut icon" href="../../assets/images/favicon.png" />
-    <style>
-      .pay{
-        text-decoration: none;
-        font-size: 25px;
-        color: antiquewhite;
-        text-shadow: none;
-        text-decoration-line: none;
-        text-decoration-style: none;
-
-      }
-    </style>
+    <link rel="shortcut icon" href="https://i.ibb.co/gtRrDPq/Logo.png" />
+    <!-- Fnt Awesome -->
+    <script src="https://kit.fontawesome.com/ebde4d4f39.js" crossorigin="anonymous"></script>
   </head>
   <body>
     <div class="container-scroller">
       <!-- partial:../../partials/_sidebar.html -->
       <nav class="sidebar sidebar-offcanvas" id="sidebar">
         <div class="sidebar-brand-wrapper d-none d-lg-flex align-items-center justify-content-center fixed-top">
-          <a class="sidebar-brand brand-logo" href="../../home"><strong><p class="pay">P A Y P O I N T</p></strong></a>
-          <a class="sidebar-brand brand-logo-mini" href="../../home"><strong><p class="pay">P A Y P O I N T</p></strong></a>
+
+          <a href="/home" style="color: white; text-decoration: none;">PAYPOINT</a>
         </div>
         <ul class="nav">
-         
-         
-          
-           
-        
-          
-           <li class="nav-item menu-items">
-            <a class="nav-link" href="../../pages/charts/chartjs.html">
+          <li class="nav-item profile">
+            <div class="profile-desc">
+              <div class="profile-pic">
+                <div class="count-indicator">
+                  <img class="img-xs rounded-circle " src="../../assets/images/faces/face15.jpg" alt="">
+                  <span class="count bg-success"></span>
+                </div>
+                <div class="profile-name">
+                  <h5 class="mb-0 font-weight-normal" id="u_name"></h5>
+                  <!-- <span>Gold Member</span> -->
+                </div>
+              </div>
+              <a href="#" id="profile-dropdown" data-toggle="dropdown"><i class="mdi mdi-dots-vertical"></i></a>
+              <div class="dropdown-menu dropdown-menu-right sidebar-dropdown preview-list" aria-labelledby="profile-dropdown">
+                <a href="#" class="dropdown-item preview-item">
+                  <div class="preview-thumbnail">
+                    <div class="preview-icon bg-dark rounded-circle">
+                      <i class="mdi mdi-settings text-primary"></i>
+                    </div>
+                  </div>
+                  <div class="preview-item-content">
+                    <p class="preview-subject ellipsis mb-1 text-small">Account settings</p>
+                  </div>
+                </a>
+                <div class="dropdown-divider"></div>
+                <a href="#" class="dropdown-item preview-item">
+                  <div class="preview-thumbnail">
+                    <div class="preview-icon bg-dark rounded-circle">
+                      <i class="mdi mdi-onepassword  text-info"></i>
+                    </div>
+                  </div>
+                  <div class="preview-item-content">
+                    <p class="preview-subject ellipsis mb-1 text-small">Change Password</p>
+                  </div>
+                </a>
+                <div class="dropdown-divider"></div>
+                <a href="#" class="dropdown-item preview-item">
+                  <div class="preview-thumbnail">
+                    <div class="preview-icon bg-dark rounded-circle">
+                      <i class="mdi mdi-calendar-today text-success"></i>
+                    </div>
+                  </div>
+                  <div class="preview-item-content">
+                    <p class="preview-subject ellipsis mb-1 text-small">To-do list</p>
+                  </div>
+                </a>
+              </div>
+            </div>
+          </li>
+          <li class="nav-item nav-category">
+            <span class="nav-link">Navigation</span>
+          </li>
+          <li class="nav-item menu-items">
+            <a class="nav-link" href="/dashboard">
               <span class="menu-icon">
-                <i class="mdi mdi-chart-bar"></i>
+                <i class="mdi mdi-speedometer"></i>
               </span>
-              <span class="menu-title">Charts</span>
+              <span class="menu-title">Dashboard</span>
             </a>
-          </li> 
-          
-          
+          </li>
+          <li class="nav-item menu-items">
+            <a class="nav-link"href="/addcreditaccount">
+              <span class="menu-icon">
+                <i class="fa-solid fa-credit-card"></i>
+              </span>
+              <span class="menu-title">Add Credit Card</span>
+              <!-- <i class="menu-arrow"></i> -->
+            </a>
+            <!-- <div class="collapse" id="ui-basic">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item"> <a class="nav-link" href="../../pages/ui-features/buttons.html">Buttons</a></li>
+                <li class="nav-item"> <a class="nav-link" href="../../pages/ui-features/dropdowns.html">Dropdowns</a></li>
+                <li class="nav-item"> <a class="nav-link" href="../../pages/ui-features/typography.html">Typography</a></li>
+              </ul>
+            </div> -->
+          </li>
+          <!-- <li class="nav-item menu-items">
+            <a class="nav-link" href="/transactionhistory">
+              <span class="menu-icon">
+                <i class="mdi mdi-contacts"></i>
+              </span>
+              <span class="menu-title">Transcation History</span>
+            </a>
+          </li> -->
+          <!-- <li class="nav-item menu-items">
+            <a class="nav-link" href="../../pages/forms/basic_elements.html">
+              <span class="menu-icon">
+                <i class="mdi mdi-playlist-play"></i>
+              </span>
+              <span class="menu-title">Transcation History</span>
+            </a>
+          </li> -->
+          <li class="nav-item menu-items">
+            <a class="nav-link" href="/transactionhistory">
+              <span class="menu-icon">
+                <i class="mdi mdi-playlist-play"></i>
+              </span>
+              <span class="menu-title">Transcation History</span>
+            </a>
+          <li class="nav-item menu-items">
+            <a class="nav-link" href="/monthlytransaction">
+              <span class="menu-icon">
+                <i class="mdi mdi-table-large"></i>
+              </span>
+              <span class="menu-title">Monthly Transcation</span>
+            </a>
+          </li>
+          <li class="nav-item menu-items">
+            <a class="nav-link" href="/credpoints">
+              <span class="menu-icon">
+                <i class="fa-solid fa-hand-holding-dollar"></i>
+              </span>
+              <span class="menu-title">Pay Bills</span>
+            </a>
+          </li>
+       
        
         </ul>
       </nav>
-   
+      <!-- partial -->
+      <div class="container-fluid page-body-wrapper">
+        <!-- partial:../../partials/_navbar.html -->
+        <nav class="navbar p-0 fixed-top d-flex flex-row">
+          <div class="navbar-brand-wrapper d-flex d-lg-none align-items-center justify-content-center">
+            <a class="navbar-brand brand-logo-mini" href="../../index.html"><img src="../../assets/images/logo-mini.svg" alt="logo" /></a>
+          </div>
+          <div class="navbar-menu-wrapper flex-grow d-flex align-items-stretch">
+            <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
+              <span class="mdi mdi-menu"></span>
+            </button>
+            <ul class="navbar-nav w-100">
+              <li class="nav-item w-100">
+                <!-- <form class="nav-link mt-2 mt-md-0 d-none d-lg-flex search">
+                  <input type="text" class="form-control" placeholder="Search products">
+                </form> -->
+              </li>
+            </ul>
+            <ul class="navbar-nav navbar-nav-right">
+              <li class="nav-item dropdown d-none d-lg-block">
+                <!-- <a class="nav-link btn btn-success create-new-button" id="createbuttonDropdown" data-toggle="dropdown" aria-expanded="false" href="#">+ Create New Project</a> -->
+                <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="createbuttonDropdown">
+                  <h6 class="p-3 mb-0">Projects</h6>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item preview-item">
+                    <div class="preview-thumbnail">
+                      <div class="preview-icon bg-dark rounded-circle">
+                        <i class="mdi mdi-file-outline text-primary"></i>
+                      </div>
+                    </div>
+                    <div class="preview-item-content">
+                      <p class="preview-subject ellipsis mb-1">Software Development</p>
+                    </div>
+                  </a>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item preview-item">
+                    <div class="preview-thumbnail">
+                      <div class="preview-icon bg-dark rounded-circle">
+                        <i class="mdi mdi-web text-info"></i>
+                      </div>
+                    </div>
+                    <div class="preview-item-content">
+                      <p class="preview-subject ellipsis mb-1">UI Development</p>
+                    </div>
+                  </a>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item preview-item">
+                    <div class="preview-thumbnail">
+                      <div class="preview-icon bg-dark rounded-circle">
+                        <i class="mdi mdi-layers text-danger"></i>
+                      </div>
+                    </div>
+                    <div class="preview-item-content">
+                      <p class="preview-subject ellipsis mb-1">Software Testing</p>
+                    </div>
+                  </a>
+                  <div class="dropdown-divider"></div>
+                  <p class="p-3 mb-0 text-center">See all projects</p>
+                </div>
+              </li>
+              <li class="nav-item nav-settings d-none d-lg-block">
+                <a class="nav-link" href="#">
+                  <i class="mdi mdi-view-grid"></i>
+                </a>
+              </li>
+              <li class="nav-item dropdown border-left">
+                <a class="nav-link count-indicator dropdown-toggle" id="messageDropdown" href="#" data-toggle="dropdown" aria-expanded="false">
+                  <i class="mdi mdi-email"></i>
+                  <span class="count bg-success"></span>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="messageDropdown">
+                  <h6 class="p-3 mb-0">Messages</h6>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item preview-item">
+                    <div class="preview-thumbnail">
+                      <img src="../../assets/images/faces/face4.jpg" alt="image" class="rounded-circle profile-pic">
+                    </div>
+                    <div class="preview-item-content">
+                      <p class="preview-subject ellipsis mb-1">Mark send you a message</p>
+                      <p class="text-muted mb-0"> 1 Minutes ago </p>
+                    </div>
+                  </a>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item preview-item">
+                    <div class="preview-thumbnail">
+                      <img src="../../assets/images/faces/face2.jpg" alt="image" class="rounded-circle profile-pic">
+                    </div>
+                    <div class="preview-item-content">
+                      <p class="preview-subject ellipsis mb-1">Cregh send you a message</p>
+                      <p class="text-muted mb-0"> 15 Minutes ago </p>
+                    </div>
+                  </a>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item preview-item">
+                    <div class="preview-thumbnail">
+                      <img src="../../assets/images/faces/face3.jpg" alt="image" class="rounded-circle profile-pic">
+                    </div>
+                    <div class="preview-item-content">
+                      <p class="preview-subject ellipsis mb-1">Profile picture updated</p>
+                      <p class="text-muted mb-0"> 18 Minutes ago </p>
+                    </div>
+                  </a>
+                  <div class="dropdown-divider"></div>
+                  <p class="p-3 mb-0 text-center">4 new messages</p>
+                </div>
+              </li>
+              <li class="nav-item dropdown border-left">
+                <a class="nav-link count-indicator dropdown-toggle" id="notificationDropdown" href="#" data-toggle="dropdown">
+                  <i class="mdi mdi-bell"></i>
+                  <span class="count bg-danger"></span>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="notificationDropdown">
+                  <h6 class="p-3 mb-0">Notifications</h6>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item preview-item">
+                    <div class="preview-thumbnail">
+                      <div class="preview-icon bg-dark rounded-circle">
+                        <i class="mdi mdi-calendar text-success"></i>
+                      </div>
+                    </div>
+                    <div class="preview-item-content">
+                      <p class="preview-subject mb-1">Event today</p>
+                      <p class="text-muted ellipsis mb-0"> Just a reminder that you have an event today </p>
+                    </div>
+                  </a>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item preview-item">
+                    <div class="preview-thumbnail">
+                      <div class="preview-icon bg-dark rounded-circle">
+                        <i class="mdi mdi-settings text-danger"></i>
+                      </div>
+                    </div>
+                    <div class="preview-item-content">
+                      <p class="preview-subject mb-1">Settings</p>
+                      <p class="text-muted ellipsis mb-0"> Update dashboard </p>
+                    </div>
+                  </a>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item preview-item">
+                    <div class="preview-thumbnail">
+                      <div class="preview-icon bg-dark rounded-circle">
+                        <i class="mdi mdi-link-variant text-warning"></i>
+                      </div>
+                    </div>
+                    <div class="preview-item-content">
+                      <p class="preview-subject mb-1">Launch Admin</p>
+                      <p class="text-muted ellipsis mb-0"> New admin wow! </p>
+                    </div>
+                  </a>
+                  <div class="dropdown-divider"></div>
+                  <p class="p-3 mb-0 text-center">See all notifications</p>
+                </div>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link" id="profileDropdown" href="#" data-toggle="dropdown">
+                  <div class="navbar-profile">
+                    <img class="img-xs rounded-circle" src="../../assets/images/faces/face15.jpg" alt="">
+                    <p class="mb-0 d-none d-sm-block navbar-profile-name" id="un_name"></p>
+                    <i class="mdi mdi-menu-down d-none d-sm-block"></i>
+                  </div>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="profileDropdown">
+                  <h6 class="p-3 mb-0">Profile</h6>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item preview-item">
+                    <div class="preview-thumbnail">
+                      <div class="preview-icon bg-dark rounded-circle">
+                        <i class="mdi mdi-settings text-success"></i>
+                      </div>
+                    </div>
+                    <div class="preview-item-content">
+                      <p class="preview-subject mb-1">Settings</p>
+                    </div>
+                  </a>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item preview-item">
+                    <div class="preview-thumbnail">
+                      <div class="preview-icon bg-dark rounded-circle">
+                        <i class="mdi mdi-logout text-danger"></i>
+                      </div>
+                    </div>
+                    <div class="preview-item-content">
+                      <p class="preview-subject mb-1">Log out</p>
+                    </div>
+                  </a>
+                  <div class="dropdown-divider"></div>
+                  <p class="p-3 mb-0 text-center">Advanced settings</p>
+                </div>
+              </li>
+            </ul>
+            <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
+              <span class="mdi mdi-format-line-spacing"></span>
+            </button>
+          </div>
+        </nav>
+        <!-- partial -->
         <div class="main-panel">
           <div class="content-wrapper">
-           
+            <div class="page-header">
+            
+             
+              <nav aria-label="breadcrumb">
+                <!-- <ol class="breadcrumb">
+                  <li class="breadcrumb-item"><a href="#">Forms</a></li>
+                  <li class="breadcrumb-item active" aria-current="page">Form elements</li>
+                </ol> -->
+              </nav>
+            </div>
             <div class="row">
-              <div class="col-lg-6 grid-margin stretch-card">
+              <div class="col-md- grid 8-margin stretch-card">
                 <div class="card">
                   <div class="card-body">
-                    <h4 class="card-title">Line chart</h4>
-                    <canvas id="lineChart" style="height:250px"></canvas>
-                  </div>
-                </div>
-              </div> 
-              <div class="col-lg-6 grid-margin stretch-card">
-                <div class="card">
-                  <div class="card-body">
-                    <h4 class="card-title">Bar chart</h4>
-                    <canvas id="barChart" style="height:230px"></canvas>
+                    
+                    <h4 class="card-title">ADD CREDIT CARD</h4>
+                    <!-- <div class="col-sm-5">
+                      <div class="form-check">
+                        <label class="form-check-label">
+                          <input type="radio" class="form-check-input" name="membershipRadios" id="membershipRadios1" value="" checked> Credit Card </label>
+                      </div>
+                    </div>
+                    <div class="col-sm-5">
+                      <div class="form-check">
+                        <label class="form-check-label">
+                          <input type="radio" class="form-check-input" name="membershipRadios" id="membershipRadios2" value="option2"> PayPal </label>
+                      </div>
+                    </div> -->
+                    <!-- <br> -->
+                    <p class="card-description"> Please enter your credit card deatils below and confirm your payment.Your credit card will be added to your invoicely account automatically. </p>
+                    <form>
+                      <div class="form-group">
+                        <label for="exampleInputname">Account Holder Name</label>
+                        <input type="text" class="form-control" id="account_holder_name" placeholder="Account Holder Name">
+                      </div>
+                      <div class="form-group">
+                        <label for="exampleInputaccount">Account Number</label>
+                        <input type="tel" data-maxlength="14" oninput="this.value=this.value.slice(0,this.dataset.maxlength)" class="form-control" id="account_number" placeholder="Account Number"/>
+                      </div>
+                      <div class="form-group">
+                        <label for="exampleInputname">Branch Name</label>
+                        <input type="text" data-maxlength="15" oninput="this.value=this.value.slice(0,this.dataset.maxlength)" class="form-control" id="branch_name" placeholder="Branch Name"/>
+                      </div>
+                      <div class="form-group">
+                        <label for="exampleInputcode">IFSC Code</label>
+                        <!-- <input type="number" maxlength="2" class="form-control" id="Expiration Month" placeholder="Expiration Month"> -->
+                        <input type="tel" data-maxlength="6" oninput="this.value=this.value.slice(0,this.dataset.maxlength)" class="form-control" id="ifsc_code" placeholder="IFSC Code"/>
+                      </div>
+                      <div class="form-group">
+                        <label for="exampleInputamount">Amount</label>
+                        <!-- <input type="number" maxlength="4" class="form-control" > -->
+                        <input type="tel" data-maxlength="10" oninput="this.value=this.value.slice(0,this.dataset.maxlength)" class="form-control" id="amount" placeholder="Amount"/>
+                      </div>
+                      <button type="button" onclick="transactiondata()" class="btn btn-primary mr-2">Submit</button>
+                      <button class="btn btn-dark">Cancel</button>
+                    </form>
                   </div>
                 </div>
               </div>
-            </div>
-            
-
-             
-             
+              <br></div>
+              <br></br>
+              <div class="col-lg-12 grid-margin stretch-card">
                 
+              </div>
+              
+                  <div class="card-body">
+                   
+                    <form>
+                      <div class="row">
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            
+                          </div>
+                        </div>
+                       
+                      </div>
+                      <div class="row">
+                       
+                        <div class="col-md-6">
+                          <div class="form-group row">
+                            
+                          </div>
+                        </div>
+                      </div>
+                      
+                      <div class="row">
+                        <div class="col-md-6">
+                          <div class="form-group row">
+                            
+                          </div>
+                        </div>
+                      
+                      </div>
+                      <div class="row">
+                    
+                      </div>
+                      <div class="row">
+                       
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+              
         </div>
+        <!-- main-panel ends -->
       </div>
+      <!-- page-body-wrapper ends -->
+    </div>
+    <!-- container-scroller -->
+    <!-- plugins:js -->
+    <script>
+      
+    </script>
     <script src="../../assets/vendors/js/vendor.bundle.base.js"></script>
-    
-    <script src="../../assets/vendors/chart.js/Chart.min.js"></script>
-    
+    <!-- endinject -->
+    <!-- Plugin js for this page -->
+    <script src="../../assets/vendors/select2/select2.min.js"></script>
+    <script src="../../assets/vendors/typeahead.js/typeahead.bundle.min.js"></script>
+    <!-- End plugin js for this page -->
+    <!-- inject:js -->
     <script src="../../assets/js/off-canvas.js"></script>
     <script src="../../assets/js/hoverable-collapse.js"></script>
     <script src="../../assets/js/misc.js"></script>
     <script src="../../assets/js/settings.js"></script>
     <script src="../../assets/js/todolist.js"></script>
-    
-    <script src="../../assets/js/chart.js"></script>
+    <!-- endinject -->
+    <!-- Custom js for this page -->
+    <script src="../../assets/js/file-upload.js"></script>
+    <script src="../../assets/js/typeahead.js"></script>
+    <script src="../../assets/js/select2.js"></script>
+    <!-- End custom js for this page -->
     
   </body>
+  <script>
+    function insertdata(){
+      var name = document.getElementById('cardholder_name').value
+      if(name.length <= 4){
+        alert("please enter the cardholder name")
+      }
+      var cardnumber = document.getElementById('card number').value
+      if(cardnumber.length <= 11){
+        alert("please enter valid card number")
+      }
+      var cvv = document.getElementById('CVV').value
+      if(cvv.length <= 2){
+        alert("please enter valid CVV number")
+      }
+      var ExpirationMonth = document.getElementById('Expiration Month').value
+      if(ExpirationMonth.length <= 1){
+        alert("please enter valid Expiration Month")
+      }
+     
+      var year = document.getElementById('Expiration Year').value
+      if(year.length <= 3){
+        alert("please enter valid expiration year")
+      }
+      // console.log(name+"  "+ cardnumber+"  "+ cvv+"  "+ ExpirationMonth+"  "+ year)
+      if((name.length >= 4) && (cardnumber.length == 12) && (cvv.length == 3) && (ExpirationMonth.length == 2) && (year.length == 4)){
+        var data = {
+          cardholder_name : name,
+          cardnumber: cardnumber,
+          cvv:cvv,
+          ExpirationMonth:ExpirationMonth,
+          year:year
+        }
+        fetch("/user_addaccount",
+        {
+            method: "POST",
+            headers: {
+              'Accept': 'application/json',
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        })
+        .then(function(res){ return res.json(); })
+        .then(function(data){ alert( JSON.stringify( data ) ) })
+      }
+      
+    }
+    
+
+
+
+// call the function
+// api url
+const api_url = 
+      "http://localhost:3000/getallusers";
+  
+// Defining async function
+async function getapi(url) {
+    
+    // Storing response
+    const response = await fetch(url);
+    
+    // Storing data in form of JSON
+    var data = await response.json();
+    console.log(data);
+    // if (response) {
+    //     hideloader();
+    // }
+   // show(data);
+
+        if(data){
+            // console.log(document.getElementById("Walletamountid"))
+            
+            
+            // document.getElementById("Walletamountid").innerHTML = 'Rs '+data[0].wallet;
+            // document.getElementById('credpointamountid').innerHTML = 'Rs '+data[0].Loyality_Points;
+            // document.getElementById("referralid").innerHTML = data[0].refferal_code;
+            document.getElementById("u_name").innerHTML = data[0].name;
+            document.getElementById("un_name").innerHTML = data[0].name;
+
+            
+            
+            
+            
+        }
+
+}
+// Calling that async function
+getapi(api_url);
+
+
+function transactiondata(){
+  var accountholdername=document.getElementById("account_holder_name").value;
+  var accountnumber=document.getElementById("account_number").value;
+  var branchname=document.getElementById("branch_name").value;
+  var ifsccode=document.getElementById("ifsc_code").value;
+  var amount=document.getElementById("amount").value;
+
+  if(accountholdername=='' && accountnumber=='' && branchname=='' && ifsccode=='' && amount==''){
+    alert("Please Enter All Credentials!");
+  }
+  else if(accountholdername==''){
+    alert('Please Enter Account Holder Name!');
+  }
+  else if(accountnumber==''){
+    alert("Please Enter Account Number!");
+  }
+  else if(branchname==''){
+    alert("Please Enter Branch Name!");
+  }
+  else if(ifsccode==''){
+    alert("Please Enter IFSC Code!");
+  }
+  else if(amount==''){
+    alert("Please Enter Amount!");
+  }
+  else{
+    alert("Transaction Done!");
+  }
+
+  data={
+     accountholdername:document.getElementById("account_holder_name").value,
+  accountnumber:document.getElementById("account_number").value,
+   branchname:document.getElementById("branch_name").value,
+  ifsccode:document.getElementById("ifsc_code").value,
+   amount:document.getElementById("amount").value,
+
+
+  }
+  fetch('/cashdata',{
+              method:'POST',
+              headers: {
+                  'Content-Type' : 'application/json',
+              },
+              body: JSON.stringify(data),
+          })
+          .then(function(res){ return res.json(); })
+        .then(function(data){ alert( JSON.stringify( data ) ) })
+         
+      }
+
+
+  </script>
+
 </html>
