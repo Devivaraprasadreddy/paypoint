@@ -37,7 +37,7 @@
                   <span class="count bg-success"></span>
                 </div>
                 <div class="profile-name">
-                  <h5 class="mb-0 font-weight-normal">kusuma</h5>
+                  <h5 class="mb-0 font-weight-normal" id="u_name">kusuma</h5>
                   <!-- <span>Gold Member</span> -->
                 </div>
               </div>
@@ -305,7 +305,7 @@
                 <a class="nav-link" id="profileDropdown" href="#" data-toggle="dropdown">
                   <div class="navbar-profile">
                     <img class="img-xs rounded-circle" src="../../assets/images/faces/face15.jpg" alt="">
-                    <p class="mb-0 d-none d-sm-block navbar-profile-name">kusuma</p>
+                    <p class="mb-0 d-none d-sm-block navbar-profile-name" id="un_name">kusuma</p>
                     <i class="mdi mdi-menu-down d-none d-sm-block"></i>
                   </div>
                 </a>
@@ -404,79 +404,8 @@
                   </div>
                 </div>
               </div>
-              <br></div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+              <br>
+            </div>
               <br></br>
               <div class="col-lg-12 grid-margin stretch-card">
                 <div class="card">
@@ -767,5 +696,48 @@
       }
       
     }
+
+
+    const api_url = 
+      "http://localhost:3000/getallusers";
+  
+// Defining async function
+async function getapi(url) {
+    
+    // Storing response
+    const response = await fetch(url);
+    
+    // Storing data in form of JSON
+    var data = await response.json();
+    console.log(data);
+    // if (response) {
+    //     hideloader();
+    // }
+   // show(data);
+
+        if(data){
+            // console.log(document.getElementById("Walletamountid"))
+            
+            
+            // document.getElementById("Walletamountid").innerHTML = 'Rs '+data[0].wallet;
+            // document.getElementById('credpointamountid').innerHTML = 'Rs '+data[0].Loyality_Points;
+            // document.getElementById("referralid").innerHTML = data[0].refferal_code;
+            document.getElementById("u_name").innerHTML = data[0].name;
+            document.getElementById("un_name").innerHTML = data[0].name;
+            // document.getElementById("t_bal").innerHtml = data[0].balance;
+
+            
+            
+            
+            
+        }
+
+}
+// Calling that async function
+getapi(api_url);
+
+  
+              
   </script>
+
 </html>

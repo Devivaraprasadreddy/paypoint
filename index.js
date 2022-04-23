@@ -125,12 +125,16 @@ app.post('/logindata',function(req,res){
 //post the admin data to database
 app.post('/admindata',function(req,res){
     console.log(req.body);
+    session=req.session;
     admindata.findOne({email:req.body.email,password:req.body.password},function(err,docs){
         if(err || docs==null)
         {
             res.sendStatus(500);
         }
         else{
+            
+            session.user=docs;
+
             res.send(docs);
         }
     })
@@ -224,6 +228,10 @@ app.get('/adminlogin',function(req,res){
     res.sendFile(__dirname + "/template/pages/samples/admin login.html");
 });
 
+// app.get('/admin',function(req,res){
+//     res.sendFile(__dirname + '/template/pages/samples/adminpannel.html')
+// })
+
 //terms and conditions page
 app.get('/terms',function(req,res){
     res.sendFile(__dirname + '/template/pages/samples/terms.html');
@@ -248,7 +256,20 @@ app.get('/logout',function(req, res){
 })
 
 app.get('/admin',function(req,res){
-    res.sendFile(__dirname + '/template/pages/samples/adminpannel.html');
+    // res.sendFile(__dirname + '/template/pages/samples/adminpannel.html');
+    session = req.session;
+    if(session.user){
+        console.log(session.user)
+        res.sendFile(__dirname + '/template/pages/samples/adminpannel.html')
+    }
+    else{
+        res.redirect('/adminlogin');
+    }
+})
+
+app.get('/adminlogout',function(req,res){
+    req.session.destroy();
+    res.redirect('/adminlogin');
 })
 
 
@@ -342,7 +363,9 @@ app.post('/user_addaccount',function(req,res){
         cvv:req.body.cvv,
         Month:req.body.ExpirationMonth,
         Year:req.body.year,
-        balance:5000
+        balance:5000,
+        // wallet:req.body.wallet,
+        // refferal_code:req.body.refferal_code
 
     }
     var filter={
