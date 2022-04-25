@@ -118,7 +118,7 @@ app.post('/cashdata',function(req,res){
             obj.save(function(err,result){
                 if(results){
                     console.log("results"+ results);
-                    res.send(result)
+                    res.send(result);
                 }
                 else{
                     console.log(err)
@@ -243,6 +243,9 @@ app.get('/getassignmentdata',(req,res)=>{
 app.get("/", function(req,res){
     res.sendFile(__dirname + "/template/pages/samples/home.html");
 });
+app.get('/popup',function(req,res){
+    res.sendFile(__dirname + '/template/pages/samples/popup.html');
+});
 
 //login page
 app.get('/login',function(req,res){
@@ -355,15 +358,19 @@ app.get("/dashboard", function(req,res){
 });
 app.get("/addcreditaccount", function(req,res){
     res.sendFile(__dirname + "/template/pages/forms/basic_elements.html");
+    // res.redirect("/addcreditaccount");
 });
 app.get("/monthlytransaction", function(req,res){
     res.sendFile(__dirname + "/template/pages/tables/basic-table.html");
+    // res.redirect("/monthlytransaction");
 });
 app.get("/transactionhistory", function(req,res){
     res.sendFile(__dirname + "/template/pages/icons/mdi.html");
+    // res.redirect("/transactionhistory");
 });
 app.get("/credpoints", function(req,res){
     res.sendFile(__dirname + "/template/pages/charts/chartjs.html");
+    // res.redirect("/credpoints");
 });
 
 

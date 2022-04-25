@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>POPUP</title>
+
+
+	<style>
+        *{
+            margin:0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins','sans-serif';
+        }
+        .container{
+            width: 100%;
+            height: 800px;
+            background: red;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .btn{
+            padding:  10px 60px;
+            background: #fff;
+            outline: none;
+            cursor: pointer;
+            font-size: 22px;
+            font-weight: 500;
+            border-radius: 30px;
+        }
+        .popup{
+            width: 400px;
+            background: #fff;
+            border-radius: 6px;
+            position: absolute;
+            top:0;
+            left:50%;
+            transform: translate(-50%,-50%) scale(0.1);
+            text-align: center;
+            padding: 0 30px 30px;
+            color: #333;
+            transition: transform 0.4s,  top 0.4s;
+            visibility: hidden;
+    
+        }
+    
+        .open-popup{
+            visibility: visible;
+            top:50%;
+            transform: translate(-50%,-50%) scale(1);
+    
+        }
+        /*.closePopup{
+            visibility: hidden;
+            top:0;
+            transform: translate(-50%,-50%) scale(0.1);
+    
+        }*/
+        .popup img{
+            width: 100px;
+            margin-top: -50px;
+            border-radius: 50%;
+            box-shadow: 0 2px 5px rgba(0,0,0.2);
+    
+        }
+        .popup h2{
+            font-size: 38px;
+            font-weight: 500;
+            margin: 30px 0 10px;
+        }
+        .popup button{
+            width: 100%;
+            margin-top: 50px;
+            padding:10px 0;
+            background:#6fd649;
+            color: #fff;
+            border:0;
+            outline:none;
+            font-size: 18px;
+            border-radius: 4px;
+            cursor: pointer;
+            box-shadow: 0 2px 5px rgba(0,0,0.2);
+    
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+		<!-- <button type="button" class="btn" onclick="openPopup()">submit</button> -->
+        <input type="button" value="Submit" class="btn" onclick="openPopup()">
+
+		<div class="popup" id="popup ">
+			<img src="data:image/png;base64,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">
+			<h2>Transaction Sucessfull</h2>
+			<p>Your transaction has been sucessfull!</p>
+			<!-- <button onclick="closePopup()">OK</button> -->
+            <input type="button" class="btn" value="OK" onclick="closePopup()">
+		</div>
+		
+	</div>
+    
+</body>
+
+
+<script>
+    var popup = document.getElementById("popup");
+    function openPopup(){
+        // alert("Working")
+        popup.addEventListener("popup");
+
+    }
+    function closePopup(){
+        popup.classList.remove("popup");
+       
+
+    }
+    
+</script>
+
+</html>
+
+
