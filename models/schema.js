@@ -18,10 +18,7 @@ const assignment = new mongoose.Schema({
         type:String,
         required:true
     },
-    cpassword:{
-        type:String,
-        required:true
-    },
+ 
     refferal_code:{
         type:String
         

@@ -6,121 +6,192 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>POPUP</title>
 
+    
+    <style>
+      .popup {
+    position: fixed;
+    width: 200px; /* Using fixed width but can be anything! */
+    height: 100px;
+    top: calc(50% - 50px); /* Using calc for proper centering, 50 = height / 2 */
+    left: calc(50% - 100px);
+    z-index:1000; /* Should be greater than the topmost element to ensure front position */
+    padding: 10px;
+    color: white;
+    visibility: hidden; /* Not visible first */
+    opacity: 0;         /* We can't animate visiblity so we set opacity to 0 */
+    transition: all 0.6s;
+}
+.popup1{
+  position: fixed;
+    width: 200px; /* Using fixed width but can be anything! */
+    height: 100px;
+    top: calc(50% - 50px); /* Using calc for proper centering, 50 = height / 2 */
+    left: calc(50% - 100px);
+    z-index:1000; /* Should be greater than the topmost element to ensure front position */
+    padding: 10px;
+    color: white;
+    visibility: hidden; /* Not visible first */
+    opacity: 0;         /* We can't animate visiblity so we set opacity to 0 */
+    transition: all 0.6s;
+}
+/* When we want to show the overlay we add the visible class */
+.visible {
+  visibility: visible;
+  opacity: 1;
+}
+/* Using a pseudo-selector to create an overlay */
+.popup:before {
+  content: '';
+	position: fixed;
+	width: 100vw;
+	height: 100vh;
+	top: 0;
+	left: 0;
+	background: rgba(0,0,0,0.85);
+  z-index: -2; /* Needs to be less than :after */
+}
+.popup:after {
+    content: "";
+    width: 100%;
+    height: 100%;
+    background-color: green;
+    top: 0; 
+    left: 0;
+    position: absolute;
+    border: 1px solid lightgreen;
+    border-radius: 10px;
+    z-index: -1;  /* to be below the parent element but in front of before */
+}
+.popup1:before{
+  content: '';
+	position: fixed;
+	width: 100vw;
+	height: 100vh;
+	top: 0;
+	left: 0;
+	background: rgba(0,0,0,0.85);
+  z-index: -2; /* Needs to be less than :after */
 
-	<style>
-        *{
-            margin:0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Poppins','sans-serif';
-        }
-        .container{
-            width: 100%;
-            height: 800px;
-            background: red;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .btn{
-            padding:  10px 60px;
-            background: #fff;
-            outline: none;
-            cursor: pointer;
-            font-size: 22px;
-            font-weight: 500;
-            border-radius: 30px;
-        }
-        .popup{
-            width: 400px;
-            background: #fff;
-            border-radius: 6px;
-            position: absolute;
-            top:0;
-            left:50%;
-            transform: translate(-50%,-50%) scale(0.1);
-            text-align: center;
-            padding: 0 30px 30px;
-            color: #333;
-            transition: transform 0.4s,  top 0.4s;
-            visibility: hidden;
-    
-        }
-    
-        .open-popup{
-            visibility: visible;
-            top:50%;
-            transform: translate(-50%,-50%) scale(1);
-    
-        }
-        /*.closePopup{
-            visibility: hidden;
-            top:0;
-            transform: translate(-50%,-50%) scale(0.1);
-    
-        }*/
-        .popup img{
-            width: 100px;
-            margin-top: -50px;
-            border-radius: 50%;
-            box-shadow: 0 2px 5px rgba(0,0,0.2);
-    
-        }
-        .popup h2{
-            font-size: 38px;
-            font-weight: 500;
-            margin: 30px 0 10px;
-        }
-        .popup button{
-            width: 100%;
-            margin-top: 50px;
-            padding:10px 0;
-            background:#6fd649;
-            color: #fff;
-            border:0;
-            outline:none;
-            font-size: 18px;
-            border-radius: 4px;
-            cursor: pointer;
-            box-shadow: 0 2px 5px rgba(0,0,0.2);
-    
-        }
+}
+.popup1:after{
+  content: "";
+    width: 100%;
+    height: 100%;
+    background-color: green;
+    top: 0; 
+    left: 0;
+    position: absolute;
+    border: 1px solid lightgreen;
+    border-radius: 10px;
+    z-index: -1;  /* to be below the parent element but in front of before */
+}
+
+.close {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  width: 20px;
+  height: 20px;
+  cursor:pointer;
+  z-index:500;
+  border: 1px solid lightgreen;
+  border-radius: 5px;
+}
+.close::after, .close::before {
+  content: '';
+	position: absolute;
+	width: 3px;
+	height: 15px;
+	top: 50%;
+	left: 50%;
+	background: lightgreen;
+}
+.close:hover, close:active {
+  background-color: #cfc;
+}
+.close::after {
+  transform: translate(-50%,-50%) rotate(45deg);
+}
+.close:before {
+  transform: translate(-50%,-50%) rotate(-45deg);
+}
+
+
     </style>
+ 
 </head>
 <body>
+  <input type="text" name="username" placeholder="enter your name"  required id="user_name">
+  <input type="password" name="password" placeholder="enter your password"  required id="pwd_id">
+  
+  <button type="submit" id="show-dialog" onclick="register()">signup</button>
+  <div class="popup">
+    <h3>Login Successfull!</h3>
+    <button type="button" onclick="ok()">OK</button>
+    <!-- <p>This is the pop window</p> -->
+    <div class="close">
+      
+    </div>
+  </div>
+  <div class="popup1">
+    <h3>Invalid!</h3>
+    <button type="button" onclick="o_k()">OK</button>
+    <div class="close">
+      
+    </div>
+  </div>
+   
 
-    <div class="container">
-		<!-- <button type="button" class="btn" onclick="openPopup()">submit</button> -->
-        <input type="button" value="Submit" class="btn" onclick="openPopup()">
 
-		<div class="popup" id="popup ">
-			<img src="data:image/png;base64,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">
-			<h2>Transaction Sucessfull</h2>
-			<p>Your transaction has been sucessfull!</p>
-			<!-- <button onclick="closePopup()">OK</button> -->
-            <input type="button" class="btn" value="OK" onclick="closePopup()">
-		</div>
-		
-	</div>
-    
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+  
+  function register(){
+    var name=document.getElementById("user_name").value;
+    var password=document.getElementById("pwd_id").value;
+    // name='dspreddy';
+    // password='dspreddy';
+    if(name=='' && password==''){
+      alert("please enter fields")
+    }
+    else if(name=='dspreddy'){
+      alert("please enter name")
+    }
+    else if(password=='dspreddy'){
+      alert("please enter password")
+    }
+    else if(name!=password){
+      $(document).ready(function () {
+  setTimeout(function () {
+    $(".popup1").addClass("visible");
+  }, 400);
+  $(".close").on("click", function() { $(".popup1").removeClass("visible");});
+  $("#show-dialog").on("click", function() { $(".popup1").addClass("visible");});
+});
+
+    }
+    else{
+      $(document).ready(function () {
+  setTimeout(function () {
+    $(".popup").addClass("visible");
+  }, 400);
+  $(".close").on("click", function() { $(".popup").removeClass("visible");});
+  $("#show-dialog").on("click", function() { $(".popup").addClass("visible");});
+});
+
+    }
+  
+  
+ 
+   }
+  function ok(){
+    window.location.href='/addcreditaccount';
+  }
+  function o_k(){
+    window.location.href='/popup';
+  }
+ </script>
 </body>
-
-
-<script>
-    var popup = document.getElementById("popup");
-    function openPopup(){
-        // alert("Working")
-        popup.addEventListener("popup");
-
-    }
-    function closePopup(){
-        popup.classList.remove("popup");
-       
-
-    }
-    
-</script>
-
 </html>
-
-
