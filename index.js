@@ -282,6 +282,10 @@ app.get('/home',function(req,res){
     
 });
 
+// app.get('/logout',function(req,res){
+//     res.sendFile('/template/pages/samples/login.html');
+// })
+
 
 // Logout pages
 app.get('/logout',function(req, res){
