@@ -623,13 +623,13 @@ function transactiondata(){
               },
               body: JSON.stringify(data)
           })
-          .then(function(res){ return res.json(); })
-        .then(function(data){ alert( JSON.stringify( data ) ) })
-        // .then(response=>response.json())
-        // .then(data=>{
-        //   console.log('success',data)
-        //   window.location.href='/';
-        // })
+        //   .then(function(res){ return res.json(); })
+        // .then(function(data){ alert( JSON.stringify( data ) ) })
+        .then(response=>response.json())
+        .then(data=>{
+          console.log('success',data)
+          window.location.href='/';
+        })
         .catch((error)=>{
           alert("Invalid Amount")
           window.location.href='/credpoints';
