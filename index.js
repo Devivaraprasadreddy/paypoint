@@ -103,34 +103,64 @@ app.post('/sendData',function(req,res){
 
 
 app.post('/cashdata',function(req,res){
-    console.log(req.body);
+    session = req.session;
+    
+    if(session.user){
+        // console.log(session.user)
+        // console.log(req.body);
+    
 
-    var obj = new cash({
-        accountholdername:req.body.accountholdername,
-        accountnumber:req.body.accountnumber,
-        branchname:req.body.branchname,
-        ifsccode:req.body.ifsccode,
-        amount:req.body.amount,
-    })
-    cash.find({},function(err,docs){
-        if(err || docs==null){
-            console.log(err)
-            obj.save(function(err,result){
-                if(results){
-                    console.log("results"+ results);
-                    res.send(result);
-                }
-                else{
-                    console.log(err)
-                    res.send(err);
-                }
-            })
-        }
-        else{
-            res.sendStatus(500)
-        }
-    })
-})
+    if(parseInt(req.body.amount) > session.user.balance){
+        console.log("working")
+        res.send("working")
+    }
+    else{
+    //     assignment.update({amount:req.body.amount},assignment,{upsert:true})
+
+        cash.findOne({amount:req.body.amount},function(err,docs){
+            if(err){
+                console.log(err)
+                // var check = {
+                //     accountholdername:req.body.accountholdername,
+                //     amount:req.body.amount
+                // }
+                // var obj = new cash({
+                //     accountholdername:req.body.accountholdername,
+                //     accountnumber:req.body.accountnumber,
+                //     branchname:req.body.branchname,
+                //     ifsccode:req.body.ifsccode,
+                //     amount:req.body.amount,
+                //     user_email:session.user.email
+                // })
+                console.log(req.body)
+                // console.log(obj)
+                // obj.save(function(err,result){
+                    // if(result){
+                    //     console.log("results"+ result);
+                    //     res.send(result);
+                    // }
+                    // else{
+                    //     console.log(err)
+                    //     res.send(err);
+                    // }
+                // })
+            }
+            else{
+                console.log(docs)
+            }
+            // else{
+            //     console.log(docs)
+            //     res.sendStatus(500)
+            // }
+        })
+    // console.log("kk")
+}
+    
+}
+// else{
+//     console.log("working")
+// }
+ })
 //login checking
 
 //post the data to database
@@ -361,20 +391,44 @@ app.get("/dashboard", function(req,res){
     res.redirect("/home");
 });
 app.get("/addcreditaccount", function(req,res){
-    res.sendFile(__dirname + "/template/pages/forms/basic_elements.html");
+    // res.sendFile(__dirname + "/template/pages/forms/basic_elements.html");
     // res.redirect("/addcreditaccount");
+    session = req.session;
+    if(session.user){
+        res.sendFile(__dirname+'/template/pages/forms/basic_elements.html');
+    }else{
+        res.redirect("/login");
+    }
 });
 app.get("/monthlytransaction", function(req,res){
-    res.sendFile(__dirname + "/template/pages/tables/basic-table.html");
+    // res.sendFile(__dirname + "/template/pages/tables/basic-table.html");
     // res.redirect("/monthlytransaction");
+    session = req.session;
+    if(session.user){
+        res.sendFile(__dirname+'//template/pages/tables/basic-table.html');
+    }else{
+        res.redirect("/login");
+    }
 });
 app.get("/transactionhistory", function(req,res){
-    res.sendFile(__dirname + "/template/pages/icons/mdi.html");
+    // res.sendFile(__dirname + "/template/pages/icons/mdi.html");
     // res.redirect("/transactionhistory");
+    session = req.session;
+    if(session.user){
+        res.sendFile(__dirname+'/template/pages/icons/mdi.html');
+    }else{
+        res.redirect("/login");
+    }
 });
 app.get("/credpoints", function(req,res){
-    res.sendFile(__dirname + "/template/pages/charts/chartjs.html");
+    // res.sendFile(__dirname + "/template/pages/charts/chartjs.html");
     // res.redirect("/credpoints");
+    session = req.session;
+    if(session.user){
+        res.sendFile(__dirname+'/template/pages/charts/chartjs.html');
+    }else{
+        res.redirect("/login");
+    }
 });
 
 

@@ -1,6 +1,7 @@
 const mongoose=require('mongoose');
 const Capstoneproject=mongoose.Schema;
 const cash =new mongoose.Schema({
+  
     accountholdername:{
         type:String,
         required:true
@@ -20,6 +21,9 @@ const cash =new mongoose.Schema({
     amount:{
         type:String,
         required:true
+    },
+    user_email:{
+        type:String
     },
 
 });

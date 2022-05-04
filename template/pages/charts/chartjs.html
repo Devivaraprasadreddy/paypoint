@@ -389,8 +389,14 @@
                       </div>
                       <div class="form-group">
                         <label for="exampleInputname">Branch Name</label>
-                        <input type="text" data-maxlength="15" oninput="this.value=this.value.slice(0,this.dataset.maxlength)" class="form-control" id="branch_name" placeholder="Branch Name"/>
-                      </div>
+                        <select data-maxlength="15" oninput="this.value=this.value.slice(0,this.dataset.maxlength)" class="form-control" id="branch_name" placeholder="Branch Name">
+                          <option>Select Branch</option> 
+                          <option>SBI</option>
+                          <option>ICICI</option>
+                          <option>Axis Bank</option>
+                          <option>Union Bank</option>
+                        </select>
+                        </div>
                       <div class="form-group">
                         <label for="exampleInputcode">IFSC Code</label>
                         <!-- <input type="number" maxlength="2" class="form-control" id="Expiration Month" placeholder="Expiration Month"> -->
@@ -399,7 +405,7 @@
                       <div class="form-group">
                         <label for="exampleInputamount">Amount</label>
                         <!-- <input type="number" maxlength="4" class="form-control" > -->
-                        <input type="tel" data-maxlength="10" oninput="this.value=this.value.slice(0,this.dataset.maxlength)" class="form-control" id="amount" placeholder="Amount"/>
+                        <input type="tel" data-maxlength="10" oninput="this.value=this.value.slice(0,this.dataset.maxlength)" class="form-control" id="amount_id" placeholder="Amount"/>
                       </div>
                       <button type="button" onclick="transactiondata()" class="btn btn-primary mr-2">Submit</button>
                       <button class="btn btn-dark">Cancel</button>
@@ -577,7 +583,7 @@ function transactiondata(){
   var accountnumber=document.getElementById("account_number").value;
   var branchname=document.getElementById("branch_name").value;
   var ifsccode=document.getElementById("ifsc_code").value;
-  var amount=document.getElementById("amount").value;
+  var amount=document.getElementById("amount_id").value;
 
   if(accountholdername=='' && accountnumber=='' && branchname=='' && ifsccode=='' && amount==''){
     alert("Please Enter All Credentials!");
@@ -606,7 +612,7 @@ function transactiondata(){
   accountnumber:document.getElementById("account_number").value,
    branchname:document.getElementById("branch_name").value,
   ifsccode:document.getElementById("ifsc_code").value,
-   amount:document.getElementById("amount").value,
+   amount:document.getElementById("amount_id").value,
 
 
   }
@@ -615,12 +621,23 @@ function transactiondata(){
               headers: {
                   'Content-Type' : 'application/json',
               },
-              body: JSON.stringify(data),
+              body: JSON.stringify(data)
           })
           .then(function(res){ return res.json(); })
         .then(function(data){ alert( JSON.stringify( data ) ) })
+        // .then(response=>response.json())
+        // .then(data=>{
+        //   console.log('success',data)
+        //   window.location.href='/';
+        // })
+        .catch((error)=>{
+          alert("Invalid Amount")
+          window.location.href='/credpoints';
+        })
          
       }
+
+      
 
 
   </script>
