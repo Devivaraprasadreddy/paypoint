@@ -21,6 +21,92 @@
     <link rel="shortcut icon" href="https://i.ibb.co/gtRrDPq/Logo.png" />
     <!-- Fnt Awesome -->
     <script src="https://kit.fontawesome.com/ebde4d4f39.js" crossorigin="anonymous"></script>
+    <style>
+      .popup {
+    position: fixed;
+    width: 350px; /* Using fixed width but can be anything! */
+    height: 150px;
+    top: calc(50% - 50px); /* Using calc for proper centering, 50 = height / 2 */
+    left: calc(50% - 170px);
+    z-index:1000; /* Should be greater than the topmost element to ensure front position */
+    padding: 10px;
+    color: black;
+    font-weight: normal;
+    visibility: hidden; /* Not visible first */
+    opacity: 2;         /* We can't animate visiblity so we set opacity to 0 */
+    transition: all 0.6s;
+}
+/* When we want to show the overlay we add the visible class */
+.visible {
+  visibility: visible;
+  opacity: 1;
+}
+/* Using a pseudo-selector to create an overlay */
+.popup:before {
+  content: '';
+	position: fixed;
+	width: 100vw;
+	height: 100vh;
+	top: 0;
+	left: 0;
+	background: rgba(0,0,0,0.85);
+  z-index: -2; /* Needs to be less than :after */
+}
+.popup:after {
+    content: "";
+    width: 100%;
+    height: 100%;
+    background-color: whitesmoke;
+    top: 0; 
+    left: 0;
+    position: absolute;
+    border: 2px solid  lightgreen;
+    border-radius: 10px;
+    z-index: -1;  /* to be below the parent element but in front of before */
+}
+
+
+
+.close {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  width: 20px;
+  height: 20px;
+  cursor:pointer;
+  z-index:500;
+  border: 2px solid red;
+  border-radius: 5px;
+}
+.close::after, .close::before {
+  content: '';
+	position: absolute;
+	width: 3px;
+	height: 15px;
+	top: 50%;
+	left: 50%;
+	background: red;
+}
+.close:hover, close:active {
+  background-color:whitesmoke;
+}
+.close::after {
+  transform: translate(-50%,-50%) rotate(45deg);
+}
+.close:before {
+  transform: translate(-50%,-50%) rotate(-45deg);
+}
+.a{
+  height: 40px;
+  width:100%;
+  background: lightgreen;
+  border-radius: 10px;
+  margin-top: 30px;
+}
+
+
+   
+    </style>
   </head>
   <body>
     <div class="container-scroller">
@@ -99,30 +185,9 @@
               <span class="menu-title">Add Credit Card</span>
               <!-- <i class="menu-arrow"></i> -->
             </a>
-            <!-- <div class="collapse" id="ui-basic">
-              <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="../../pages/ui-features/buttons.html">Buttons</a></li>
-                <li class="nav-item"> <a class="nav-link" href="../../pages/ui-features/dropdowns.html">Dropdowns</a></li>
-                <li class="nav-item"> <a class="nav-link" href="../../pages/ui-features/typography.html">Typography</a></li>
-              </ul>
-            </div> -->
+            
           </li>
-          <!-- <li class="nav-item menu-items">
-            <a class="nav-link" href="/transactionhistory">
-              <span class="menu-icon">
-                <i class="mdi mdi-contacts"></i>
-              </span>
-              <span class="menu-title">Transcation History</span>
-            </a>
-          </li> -->
-          <!-- <li class="nav-item menu-items">
-            <a class="nav-link" href="../../pages/forms/basic_elements.html">
-              <span class="menu-icon">
-                <i class="mdi mdi-playlist-play"></i>
-              </span>
-              <span class="menu-title">Transcation History</span>
-            </a>
-          </li> -->
+          
           <li class="nav-item menu-items">
             <a class="nav-link" href="/transactionhistory">
               <span class="menu-icon">
@@ -146,6 +211,14 @@
               <span class="menu-title">Pay Bills</span>
             </a>
           </li>
+          <li class="nav-item menu-items">
+            <a class="nav-link" href="/review">
+              <span class="menu-icon">
+                <i class="mdi mdi-chart-bar"></i>
+              </span>
+              <span class="menu-title">Give your Review</span>
+            </a>
+          </li>
        
        
         </ul>
@@ -163,14 +236,12 @@
             </button>
             <ul class="navbar-nav w-100">
               <li class="nav-item w-100">
-                <!-- <form class="nav-link mt-2 mt-md-0 d-none d-lg-flex search">
-                  <input type="text" class="form-control" placeholder="Search products">
-                </form> -->
+                
               </li>
             </ul>
             <ul class="navbar-nav navbar-nav-right">
               <li class="nav-item dropdown d-none d-lg-block">
-                <!-- <a class="nav-link btn btn-success create-new-button" id="createbuttonDropdown" data-toggle="dropdown" aria-expanded="false" href="#">+ Create New Project</a> -->
+               
                 <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="createbuttonDropdown">
                   <h6 class="p-3 mb-0">Projects</h6>
                   <div class="dropdown-divider"></div>
@@ -211,15 +282,10 @@
                 </div>
               </li>
               <li class="nav-item nav-settings d-none d-lg-block">
-                <a class="nav-link" href="#">
-                  <i class="mdi mdi-view-grid"></i>
-                </a>
+                
               </li>
               <li class="nav-item dropdown border-left">
-                <a class="nav-link count-indicator dropdown-toggle" id="messageDropdown" href="#" data-toggle="dropdown" aria-expanded="false">
-                  <i class="mdi mdi-email"></i>
-                  <span class="count bg-success"></span>
-                </a>
+                
                 <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="messageDropdown">
                   <h6 class="p-3 mb-0">Messages</h6>
                   <div class="dropdown-divider"></div>
@@ -257,10 +323,7 @@
                 </div>
               </li>
               <li class="nav-item dropdown border-left">
-                <a class="nav-link count-indicator dropdown-toggle" id="notificationDropdown" href="#" data-toggle="dropdown">
-                  <i class="mdi mdi-bell"></i>
-                  <span class="count bg-danger"></span>
-                </a>
+                
                 <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="notificationDropdown">
                   <h6 class="p-3 mb-0">Notifications</h6>
                   <div class="dropdown-divider"></div>
@@ -352,10 +415,7 @@
             
              
               <nav aria-label="breadcrumb">
-                <!-- <ol class="breadcrumb">
-                  <li class="breadcrumb-item"><a href="#">Forms</a></li>
-                  <li class="breadcrumb-item active" aria-current="page">Form elements</li>
-                </ol> -->
+                
               </nav>
             </div>
             <div class="row">
@@ -364,19 +424,7 @@
                   <div class="card-body">
                     
                     <h4 class="card-title">ADD CREDIT CARD</h4>
-                    <!-- <div class="col-sm-5">
-                      <div class="form-check">
-                        <label class="form-check-label">
-                          <input type="radio" class="form-check-input" name="membershipRadios" id="membershipRadios1" value="" checked> Credit Card </label>
-                      </div>
-                    </div>
-                    <div class="col-sm-5">
-                      <div class="form-check">
-                        <label class="form-check-label">
-                          <input type="radio" class="form-check-input" name="membershipRadios" id="membershipRadios2" value="option2"> PayPal </label>
-                      </div>
-                    </div> -->
-                    <!-- <br> -->
+                   
                     <p class="card-description"> Please enter your credit card deatils below and confirm your payment.Your credit card will be added to your invoicely account automatically. </p>
                     <form>
                       <div class="form-group">
@@ -399,12 +447,12 @@
                         </div>
                       <div class="form-group">
                         <label for="exampleInputcode">IFSC Code</label>
-                        <!-- <input type="number" maxlength="2" class="form-control" id="Expiration Month" placeholder="Expiration Month"> -->
+
                         <input type="tel" data-maxlength="6" oninput="this.value=this.value.slice(0,this.dataset.maxlength)" class="form-control" id="ifsc_code" placeholder="IFSC Code"/>
                       </div>
                       <div class="form-group">
                         <label for="exampleInputamount">Amount</label>
-                        <!-- <input type="number" maxlength="4" class="form-control" > -->
+                       
                         <input type="tel" data-maxlength="10" oninput="this.value=this.value.slice(0,this.dataset.maxlength)" class="form-control" id="amount_id" placeholder="Amount"/>
                       </div>
                       <button type="button" onclick="transactiondata()" class="btn btn-primary mr-2">Submit</button>
@@ -464,7 +512,19 @@
       <!-- page-body-wrapper ends -->
     </div>
     <!-- container-scroller -->
+
+    <!--popup-->
+    <div class="popup">
+      <h3>Transaction Successful!</h3>
+      <button type="button" class="a" onclick="ok()">OK</button>
+      <!-- <p>This is the pop window</p> -->
+      <div class="close">
+        
+      </div>
+    </div>
     <!-- plugins:js -->
+
+
     <script>
       
     </script>
@@ -488,7 +548,7 @@
     <!-- End custom js for this page -->
     
   </body>
-  <script>
+  <script type="text/javascript"> 
     function insertdata(){
       var name = document.getElementById('cardholder_name').value
       if(name.length <= 4){
@@ -558,13 +618,7 @@ async function getapi(url) {
    // show(data);
 
         if(data){
-            // console.log(document.getElementById("Walletamountid"))
-            
-            
-            // document.getElementById("Walletamountid").innerHTML = 'Rs '+data[0].wallet;
-            // document.getElementById('credpointamountid').innerHTML = 'Rs '+data[0].Loyality_Points;
-            // document.getElementById("referralid").innerHTML = data[0].refferal_code;
-            document.getElementById("u_name").innerHTML = data[0].name;
+           document.getElementById("u_name").innerHTML = data[0].name;
             document.getElementById("un_name").innerHTML = data[0].name;
 
             
@@ -604,8 +658,16 @@ function transactiondata(){
     alert("Please Enter Amount!");
   }
   else{
-    alert("Transaction Done!");
+
+    $(document).ready(function () {
+  setTimeout(function () {
+    $(".popup").addClass("visible");
+  }, 400);
+  $(".close").on("click", function() { $(".popup").removeClass("visible");});
+  $("#show-dialog").on("click", function() { $(".popup").addClass("visible");});
+});
   }
+ 
 
   data={
      accountholdername:document.getElementById("account_holder_name").value,
@@ -623,12 +685,11 @@ function transactiondata(){
               },
               body: JSON.stringify(data)
           })
-        //   .then(function(res){ return res.json(); })
-        // .then(function(data){ alert( JSON.stringify( data ) ) })
+       
         .then(response=>response.json())
         .then(data=>{
           console.log('success',data)
-          window.location.href='/';
+          window.location.href='/home';
         })
         .catch((error)=>{
           alert("Invalid Amount")
@@ -636,6 +697,10 @@ function transactiondata(){
         })
          
       }
+      function ok(){
+    window.location.href='/home';
+ 
+  }
 
       
 

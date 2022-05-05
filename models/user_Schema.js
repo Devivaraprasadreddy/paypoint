@@ -33,7 +33,7 @@ const usercapstone=new mongoose.Schema({
         required:true
 
     },
-    wallet:{
+    walletPoints:{
         type:Number,
        
     },

@@ -66,6 +66,7 @@ const Transaction=require('../models/Transaction_Schema.js');
 const usercapstone=require('../models/user_Schema.js');
 const Loyality_Transaction=require('../models/Loyality_Schema.js');
 const cash = require('../models/cash_schema.js');
+const review = require('../models/review_schema.js');
 
 
 
@@ -113,6 +114,17 @@ router.get('/getalltransactions',function(req,res){
     })
 });
 
+
+router.get('/get-cash', function(req,res){
+    cash.find({},function(err,docs){
+      if(err){
+        console.log(err)
+      }
+      else{
+        res.send(docs)
+      }
+    })
+  })
 
 //it will gets users data
 router.get('/getallusers',function(req,res){
@@ -337,6 +349,54 @@ router.post('/sendData',function(req,res){
    
 });
 
+router.post('/reviewdata',function(req,res){
+    //res.sendFile(__dirname + '/pages/sample.html');
+    console.log(req.body);
+    //res.send(req.body);
+    var obj = new review({
+        text:req.body.text,
+       
+    })
+    review.find({}, function(err,docs){
+        if(err || docs==null){
+            console.log(err)
+            obj.save(function(err, results) {
+                if(results){
+                   console.log("results"+ results);
+                    res.send(results);
+                }else{
+                    console.log(err)
+                    res.send(err);
+                }
+            })
+        }
+        else{
+            res.sendStatus(500)
+        }
+    })
+   
+});
+router.get('/review', function(req,res){
+    // res.sendFile(path.resolve + "/template/pages/charts/chartjs.html");
+    // res.redirect("/credpoints");
+    session = req.session;
+    if(session.user){
+        res.sendFile(path.resolve('template/pages/samples/review.html'));
+    }else{
+        res.redirect("/home");
+    }
+});
+
+router.get('/reviewdata',function(req,res){
+    review.find(function(err,result){
+        if(err || result==null){
+            console.log(err)
+        }
+        else if(result!=undefined){
+            console.log(result)
+            res.send(result);
+        }
+    })
+})
+
 module.exports=router;
-
-

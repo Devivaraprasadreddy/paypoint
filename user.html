@@ -6,29 +6,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>PAYPOINT</title>
     <!-- plugins:css -->
-    <link rel="stylesheet" href="assets/vendors/mdi/css/materialdesignicons.min.css">
-    <link rel="stylesheet" href="assets/vendors/css/vendor.bundle.base.css">
+    <link rel="stylesheet" href="../../assets/vendors/mdi/css/materialdesignicons.min.css">
+    <link rel="stylesheet" href="../../assets/vendors/css/vendor.bundle.base.css">
     <!-- endinject -->
     <!-- Plugin css for this page -->
-    <link rel="stylesheet" href="assets/vendors/jvectormap/jquery-jvectormap.css">
-    <link rel="stylesheet" href="assets/vendors/flag-icon-css/css/flag-icon.min.css">
-    <link rel="stylesheet" href="assets/vendors/owl-carousel-2/owl.carousel.min.css">
-    <link rel="stylesheet" href="assets/vendors/owl-carousel-2/owl.theme.default.min.css">
+    <link rel="stylesheet" href="../../assets/vendors/select2/select2.min.css">
+    <link rel="stylesheet" href="../../assets/vendors/select2-bootstrap-theme/select2-bootstrap.min.css">
     <!-- End plugin css for this page -->
     <!-- inject:css -->
     <!-- endinject -->
     <!-- Layout styles -->
-    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="../../assets/css/style.css">
     <!-- End layout styles -->
     <link rel="shortcut icon" href="https://i.ibb.co/gtRrDPq/Logo.png" />
+    <!-- Fnt Awesome -->
+    <script src="https://kit.fontawesome.com/ebde4d4f39.js" crossorigin="anonymous"></script>
   </head>
   <body>
     <div class="container-scroller">
-      <!-- partial:partials/_sidebar.html -->
+      <!-- partial:../../partials/_sidebar.html -->
       <nav class="sidebar sidebar-offcanvas" id="sidebar">
         <div class="sidebar-brand-wrapper d-none d-lg-flex align-items-center justify-content-center fixed-top">
-          <!-- <a class="sidebar-brand brand-logo" href="index.html"><img src="assets/images/logo.svg" alt="logo" /></a> -->
-          <a class="sidebar-brand brand-logo-mini" href="index.html"><img src="assets/images/logo-mini.svg" alt="logo" /></a>
+
+          <a href="/home" style="color: white; text-decoration: none;">PAYPOINT</a>
+
         </div>
         <ul class="nav">
           <li class="nav-item profile">
@@ -96,7 +97,7 @@
               <span class="menu-icon">
                 <i class="mdi mdi-playlist-play"></i>
               </span>
-              <span class="menu-title">Add Credit Account</span>
+              <span class="menu-title">Add Credit Card</span>
             </a>
           </li>
           <li class="nav-item menu-items">
@@ -120,9 +121,17 @@
           <li class="nav-item menu-items">
             <a class="nav-link" href="/credpoints">
               <span class="menu-icon">
-                <i class="mdi mdi-chart-bar"></i>
+                <i class="fa-solid fa-hand-holding-dollar"></i>
               </span>
               <span class="menu-title">Pay Bills</span>
+            </a>
+          </li>
+          <li class="nav-item menu-items">
+            <a class="nav-link" href="/review">
+              <span class="menu-icon">
+                <i class="mdi mdi-chart-bar"></i>
+              </span>
+              <span class="menu-title">Give your Review</span>
             </a>
           </li>
          
@@ -183,15 +192,7 @@
                 </div>
               </li>
               <li class="nav-item nav-settings d-none d-lg-block">
-                <a class="nav-link" href="#">
-                  <i class="mdi mdi-view-grid"></i>
-                </a>
-              </li>
-              <li class="nav-item dropdown border-left">
-                <a class="nav-link count-indicator dropdown-toggle" id="messageDropdown" href="#" data-toggle="dropdown" aria-expanded="false">
-                  <i class="mdi mdi-email"></i>
-                  <span class="count bg-success"></span>
-                </a>
+                
                 <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="messageDropdown">
                   <h6 class="p-3 mb-0">Messages</h6>
                   <div class="dropdown-divider"></div>
@@ -328,15 +329,15 @@
                   <div class="card-body">
                     <div class="row">
                       <div class="col-9">
-                        <div class="d-flex align-items-center align-self-start">
-                          <h3 class="mb-0" id="Walletamountid">Rs12.34</h3>
+                        <div class="d-flex align-items-center align-self-start" id="w_id">
+                          <h3 class="mb-0" ></h3>
                           </div>
                       </div>
                       <div class="col-3">
                        
                       </div>
                     </div>
-                    <h6 class="text-muted font-weight-normal">Wallet</h6>
+                    <h6 class="text-muted font-weight-normal" id="w_id">Wallet</h6>
                   </div>
                 </div>
               </div>
@@ -362,7 +363,7 @@
                   <div class="card-body">
                     <div class="row">
                       <div class="col-9">
-                        <div class="d-flex align-items-center align-self-start" id="t_bal">
+                        <div class="d-flex align-items-center align-self-start" id="c_bal">
                           <h3 class="mb-0" id="credpointamountid">Rs17.34</h3>
                           </div>
                       </div>
@@ -400,7 +401,7 @@
                           <h3 class="mb-0">Rs17.34</h3>
                           </div>
                       </div>
-                      <div class="col-3">
+                      <div class="col-3" >
                       
                       </div>
                     </div>
@@ -409,22 +410,22 @@
                 </div>
               </div>
       
-              <div class="col-xl-4 col-sm-6 grid-margin stretch-card">
+              <div class="col-xl-4 col-sm-6 grid-margin stretch-card" >
                 <div class="card">
                   <div class="card-body">
                     <div class="row">
 
                       <div class="col-9">
-                        <div class="d-flex align-items-center align-self-start">
-                          <h3 class="mb-0"id="referralid"></h3>
-                          <p class="text-success ml-2 mb-0 font-weight-medium"></p>
+                        <div class="d-flex align-items-center align-self-start" id="r_id">
+                          <h3 class="mb-0"></h3>
+                        
                         </div>
                       </div>
                       <div class="col-3">
                       
                       </div>
                     </div>
-                    <h6 class="text-muted font-weight-normal">Referral Code</h6>
+                    <h6 class="text-muted font-weight-normal" id="r_id">Referral Code</h6>
                   </div>
                 </div>
               </div>
@@ -621,16 +622,18 @@ async function getapi(url) {
    // show(data);
 
         if(data){
-            console.log(document.getElementById("Walletamountid"))
-            
-            // console.log(data);
-             document.getElementById("Walletamountid").innerHTML = 'Rs '+data[0].wallet;
-             document.getElementById('credpointamountid').innerHTML = 'Rs '+data[0].Loyality_Points;
-            document.getElementById("referralid").innerHTML = data[0].refferal_code;
-             document.getElementById("u_name").innerHTML = data[0].name;
+            // console.log(document.getElementById("Walletamountid"))
+            document.getElementById("u_name").innerHTML = data[0].name;
              document.getElementById("un_name").innerHTML = data[0].name;
-            document.getElementById("t_bal").innerHtml = data[0].balance;
+             document.getElementById('c_bal').innerHTML = data[0].walletPoints;
+             document.getElementById("t_bal").innerHTML = 'Rs '+data[0].balance;
+             document.getElementById("r_id").innerHTML= data[0].refferal_code;
+             document.getElementById("w_id").innerHTML= data[0].walletPoints;
 
+           
+            // console.log(data);
+              // document.getElementById("referralid").innerHTML = data[0].refferal_code;
+            
             
             
             

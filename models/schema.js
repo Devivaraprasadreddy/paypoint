@@ -55,6 +55,9 @@ const assignment = new mongoose.Schema({
     },
     walletPoints:{
         type:Number
+    },
+    refferal_code:{
+        type:String,
     }
 
 });

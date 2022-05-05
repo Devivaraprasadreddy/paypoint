@@ -19,6 +19,8 @@
     <link rel="stylesheet" href="../../assets/css/style.css">
     <!-- End layout styles -->
     <link rel="shortcut icon" href="https://i.ibb.co/gtRrDPq/Logo.png" />
+    <!-- Fnt Awesome -->
+    <script src="https://kit.fontawesome.com/ebde4d4f39.js" crossorigin="anonymous"></script>
   </head>
   <body>
     <div class="container-scroller">
@@ -36,8 +38,8 @@
                   <img class="img-xs rounded-circle " src="../../assets/images/faces/face15.jpg" alt="">
                   <span class="count bg-success"></span>
                 </div>
-                <div class="profile-name">
-                  <h5 class="mb-0 font-weight-normal" id="u_name"></h5>
+                <div class="profile-name" id="u_name">
+                  <h5 class="mb-0 font-weight-normal" ></h5>
                   <!-- <span>Gold Member</span> -->
                 </div>
               </div>
@@ -92,12 +94,12 @@
           <li class="nav-item menu-items">
             <a class="nav-link"href="/addcreditaccount">
               <span class="menu-icon">
-                <i class="mdi mdi-laptop"></i>
+                <i class="fa-solid fa-credit-card"></i>
               </span>
               <span class="menu-title">Add Credit Card</span>
               <!-- <i class="menu-arrow"></i> -->
             </a>
-           
+            
           </li>
           
           <li class="nav-item menu-items">
@@ -118,7 +120,7 @@
           <li class="nav-item menu-items">
             <a class="nav-link" href="/credpoints">
               <span class="menu-icon">
-                <i class="mdi mdi-chart-bar"></i>
+                <i class="fa-solid fa-hand-holding-dollar"></i>
               </span>
               <span class="menu-title">Pay Bills</span>
             </a>
@@ -131,6 +133,7 @@
               <span class="menu-title">Give your Review</span>
             </a>
           </li>
+     
        
        
         </ul>
@@ -153,7 +156,7 @@
             </ul>
             <ul class="navbar-nav navbar-nav-right">
               <li class="nav-item dropdown d-none d-lg-block">
-
+               
                 <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="createbuttonDropdown">
                   <h6 class="p-3 mb-0">Projects</h6>
                   <div class="dropdown-divider"></div>
@@ -194,8 +197,10 @@
                 </div>
               </li>
               <li class="nav-item nav-settings d-none d-lg-block">
-                <a class="nav-link" href="#">
-                  
+                
+              </li>
+              <li class="nav-item dropdown border-left">
+                
                 <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="messageDropdown">
                   <h6 class="p-3 mb-0">Messages</h6>
                   <div class="dropdown-divider"></div>
@@ -237,7 +242,17 @@
                 <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="notificationDropdown">
                   <h6 class="p-3 mb-0">Notifications</h6>
                   <div class="dropdown-divider"></div>
-
+                  <a class="dropdown-item preview-item">
+                    <div class="preview-thumbnail">
+                      <div class="preview-icon bg-dark rounded-circle">
+                        <i class="mdi mdi-calendar text-success"></i>
+                      </div>
+                    </div>
+                    <div class="preview-item-content">
+                      <p class="preview-subject mb-1">Event today</p>
+                      <p class="text-muted ellipsis mb-0"> Just a reminder that you have an event today </p>
+                    </div>
+                  </a>
                   <div class="dropdown-divider"></div>
                   <a class="dropdown-item preview-item">
                     <div class="preview-thumbnail">
@@ -319,36 +334,20 @@
               </nav>
             </div>
             <div class="row">
-              <div class="col-md- grid 8-margin stretch-card">
+              <div class="col-md-12 grid 8-margin stretch-card">
                 <div class="card">
                   <div class="card-body">
-                    <h4 class="card-title">ADD Credit Card</h4>
+                    
+                    <h4 class="card-title">Give Your Review</h4>
                    
-                    <p class="card-description"> Please enter your credit card deatils below and confirm your payment.Your credit card will be added to your invoicely account automatically. </p>
+                    
                     <form>
                       <div class="form-group">
-                        <label for="exampleInputUsername1">Cardholder Name</label>
-                        <input type="text" class="form-control" id="cardholder_name" placeholder="Cardholder Name">
+                        
+                        <textarea type="text" class="form-control" id="review" placeholder="Post your Review"></textarea>
                       </div>
-                      <div class="form-group">
-                        <label for="exampleInputEmail1">Card Number</label>
-                        <input type="tel" data-maxlength="12" oninput="this.value=this.value.slice(0,this.dataset.maxlength)" class="form-control" id="card number" placeholder="Card Number"/>
-                      </div>
-                      <div class="form-group">
-                        <label for="exampleInputPassword1">CVV</label>
-                        <input type="tel" data-maxlength="3" oninput="this.value=this.value.slice(0,this.dataset.maxlength)" class="form-control" id="CVV" placeholder="CVV"/>
-                      </div>
-                      <div class="form-group">
-                        <label for="exampleInputConfirmPassword1">Expiration Month</label>
-
-                        <input type="tel" data-maxlength="2" oninput="this.value=this.value.slice(0,this.dataset.maxlength)" class="form-control" id="Expiration Month" placeholder="Expiration Month"/>
-                      </div>
-                      <div class="form-group">
-                        <label for="exampleInputConfirmPassword1">Expiration Year</label>
-                        <!-- <input type="number" maxlength="4" class="form-control" > -->
-                        <input type="tel" data-maxlength="4" oninput="this.value=this.value.slice(0,this.dataset.maxlength)" class="form-control" id="Expiration Year" placeholder="Expiration Year"/>
-                      </div>
-                      <button type="button" onclick="insertdata()" class="btn btn-primary mr-2">Submit</button>
+                      
+                      <button type="button" onclick="reviewdata()" class="btn btn-primary mr-2">Submit</button>
                       <button class="btn btn-dark">Cancel</button>
                     </form>
                   </div>
@@ -357,119 +356,7 @@
               <br></div>
               <br></br>
               <div class="col-lg-12 grid-margin stretch-card">
-                <div class="card">
-                  <div class="card-body">
-                    <h4 class="card-title">Striped Table</h4>
-                    <p class="card-description"> Add class <code>.table-striped</code>
-                    </p>
-                    <div class="table-responsive">
-                      <table class="table table-striped">
-                        <thead>
-                          <tr>
-                            <th> User </th>
-                            <th> First name </th>
-                            <th> Progress </th>
-                            <th> Amount </th>
-                            <th> Deadline </th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <tr>
-                            <td class="py-1">
-                              <img src="../../assets/images/faces-clipart/pic-1.png" alt="image" />
-                            </td>
-                            <td> Herman Beck </td>
-                            <td>
-                              <div class="progress">
-                                <div class="progress-bar bg-success" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                              </div>
-                            </td>
-                            <td>  Rs77.99 </td>
-                            <td> May 15, 2015 </td>
-                          </tr>
-                          <tr>
-                            <td class="py-1">
-                              <img src="../../assets/images/faces-clipart/pic-2.png" alt="image" />
-                            </td>
-                            <td> Messsy Adam </td>
-                            <td>
-                              <div class="progress">
-                                <div class="progress-bar bg-danger" role="progressbar" style="width: 75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
-                              </div>
-                            </td>
-                            <td> Rs245.30 </td>
-                            <td> July 1, 2015 </td>
-                          </tr>
-                          <tr>
-                            <td class="py-1">
-                              <img src="../../assets/images/faces-clipart/pic-3.png" alt="image" />
-                            </td>
-                            <td> John Richards </td>
-                            <td>
-                              <div class="progress">
-                                <div class="progress-bar bg-warning" role="progressbar" style="width: 90%" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
-                              </div>
-                            </td>
-                            <td> Rs138.00 </td>
-                            <td> Apr 12, 2015 </td>
-                          </tr>
-                          <tr>
-                            <td class="py-1">
-                              <img src="../../assets/images/faces-clipart/pic-4.png" alt="image" />
-                            </td>
-                            <td> Peter Meggik </td>
-                            <td>
-                              <div class="progress">
-                                <div class="progress-bar bg-primary" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
-                              </div>
-                            </td>
-                            <td>  Rs77.99 </td>
-                            <td> May 15, 2015 </td>
-                          </tr>
-                          <tr>
-                            <td class="py-1">
-                              <img src="../../assets/images/faces-clipart/pic-1.png" alt="image" />
-                            </td>
-                            <td> Edward </td>
-                            <td>
-                              <div class="progress">
-                                <div class="progress-bar bg-danger" role="progressbar" style="width: 35%" aria-valuenow="35" aria-valuemin="0" aria-valuemax="100"></div>
-                              </div>
-                            </td>
-                            <td>  Rs160.25 </td>
-                            <td> May 03, 2015 </td>
-                          </tr>
-                          <tr>
-                            <td class="py-1">
-                              <img src="../../assets/images/faces-clipart/pic-2.png" alt="image" />
-                            </td>
-                            <td> John Doe </td>
-                            <td>
-                              <div class="progress">
-                                <div class="progress-bar bg-info" role="progressbar" style="width: 65%" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100"></div>
-                              </div>
-                            </td>
-                            <td>  Rs123.21 </td>
-                            <td> April 05, 2015 </td>
-                          </tr>
-                          <tr>
-                            <td class="py-1">
-                              <img src="../../assets/images/faces-clipart/pic-3.png" alt="image" />
-                            </td>
-                            <td> Henry Tom </td>
-                            <td>
-                              <div class="progress">
-                                <div class="progress-bar bg-warning" role="progressbar" style="width: 20%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
-                              </div>
-                            </td>
-                            <td>  Rs150.00 </td>
-                            <td> June 16, 2015 </td>
-                          </tr>
-                        </tbody>
-                      </table>
-                    </div>
-                  </div>
-                </div>
+                
               </div>
               
                   <div class="card-body">
@@ -511,8 +398,6 @@
                 </div>
               </div>
               
-          <!-- </footer> -->
-          <!-- partial -->
         </div>
         <!-- main-panel ends -->
       </div>
@@ -544,49 +429,45 @@
     
   </body>
   <script>
-    function insertdata(){
-      var name = document.getElementById('cardholder_name').value
-      if(name.length <= 4){
-        alert("please enter the cardholder name")
-      }
-      var cardnumber = document.getElementById('card number').value
-      if(cardnumber.length <= 11){
-        alert("please enter valid card number")
-      }
-      var cvv = document.getElementById('CVV').value
-      if(cvv.length <= 2){
-        alert("please enter valid CVV number")
-      }
-      var ExpirationMonth = document.getElementById('Expiration Month').value
-      if(ExpirationMonth.length <= 1){
-        alert("please enter valid Expiration Month")
-      }
-     
-      var year = document.getElementById('Expiration Year').value
-      if(year.length <= 3){
-        alert("please enter valid expiration year")
-      }
-      // console.log(name+"  "+ cardnumber+"  "+ cvv+"  "+ ExpirationMonth+"  "+ year)
-      if((name.length >= 4) && (cardnumber.length == 12) && (cvv.length == 3) && (ExpirationMonth.length == 2) && (year.length == 4)){
-        var data = {
-          cardholder_name : name,
-          cardnumber: cardnumber,
-          cvv:cvv,
-          ExpirationMonth:ExpirationMonth,
-          year:year
-        }
-        fetch("/user_addaccount",
+    function reviewdata(){
+        var review=document.getElementById('review').value;
+        if(review==null)
         {
-            method: "POST",
-            headers: {
-              'Accept': 'application/json',
-              'Content-Type': 'application/json'
+            alert("please Post the review")
+            return false;
+
+        }
+        else{
+            data={
+           text:document.getElementById('review').value,
+        }
+        fetch('/reviewdata',{
+            method:'POST',
+            headers:{
+                'Content-Type':'application/json',
             },
-            body: JSON.stringify(data)
+            body:JSON.stringify(data),
         })
-        .then(function(res){ return res.json(); })
-        .then(function(data){ alert( JSON.stringify( data ) ) })
-      }
+        .then(response => response.json())
+          .then(data => {
+              console.log('success:', data);
+              
+          })
+          .catch((error) => {
+              alert("Done")
+              window.location.href='/review';
+          });
+        }
+       
+
+      
+      
+      
+    
+     
+     
+     
+     
       
     }
     
@@ -624,5 +505,6 @@ async function getapi(url) {
 // Calling that async function
 getapi(api_url);
   </script>
+
 
 </html>
