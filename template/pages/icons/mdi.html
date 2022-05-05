@@ -10,8 +10,6 @@
     <link rel="stylesheet" href="../../assets/vendors/css/vendor.bundle.base.css">
     <!-- endinject -->
     <!-- Plugin css for this page -->
-    <link rel="stylesheet" href="../../assets/vendors/select2/select2.min.css">
-    <link rel="stylesheet" href="../../assets/vendors/select2-bootstrap-theme/select2-bootstrap.min.css">
     <!-- End plugin css for this page -->
     <!-- inject:css -->
     <!-- endinject -->
@@ -25,8 +23,9 @@
       <!-- partial:../../partials/_sidebar.html -->
       <nav class="sidebar sidebar-offcanvas" id="sidebar">
         <div class="sidebar-brand-wrapper d-none d-lg-flex align-items-center justify-content-center fixed-top">
-          <a class="sidebar-brand brand-logo" href="../../index.html"><img src="../../assets/images/logo.svg" alt="logo" /></a>
-          <a class="sidebar-brand brand-logo-mini" href="../../index.html"><img src="../../assets/images/logo-mini.svg" alt="logo" /></a>
+          <!-- <a class="sidebar-brand brand-logo" href="../../index.html"><img src="../../assets/images/logo.svg" alt="logo" /></a> -->
+          <!-- <a class="sidebar-brand brand-logo-mini" href="../../index.html"><img src="../../assets/images/logo-mini.svg" alt="logo" /></a> -->
+          <a href="/home" style="color: white; text-decoration: none;">PAYPOINT</a>
         </div>
         <ul class="nav">
           <li class="nav-item profile">
@@ -37,7 +36,7 @@
                   <span class="count bg-success"></span>
                 </div>
                 <div class="profile-name">
-                  <h5 class="mb-0 font-weight-normal">Devi Vara Prasad Reddy</h5>
+                  <h5 class="mb-0 font-weight-normal" id="u_name"></h5>
                   <!-- <span>Gold Member</span> -->
                 </div>
               </div>
@@ -82,7 +81,7 @@
             <span class="nav-link">Navigation</span>
           </li>
           <li class="nav-item menu-items">
-            <a class="nav-link" href="../../index.html">
+            <a class="nav-link" href="/dashboard">
               <span class="menu-icon">
                 <i class="mdi mdi-speedometer"></i>
               </span>
@@ -90,23 +89,35 @@
             </a>
           </li>
           <li class="nav-item menu-items">
-            <a class="nav-link"href="/addcreditaccount">
+            <a class="nav-link" href="/addcreditaccount">
+              <span class="menu-icon">
+                <i class="mdi mdi-playlist-play"></i>
+              </span>
+              <span class="menu-title">Add Credit Account</span>
+            </a>
+          </li>
+          <!-- <li class="nav-item menu-items">
+            <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
               <span class="menu-icon">
                 <i class="mdi mdi-laptop"></i>
               </span>
-              <span class="menu-title"> Add Credit Account</span>
-              <!-- <i class="menu-arrow"></i> -->
+              <span class="menu-title">Add Credit Card</span> -->
+              <!-- <i class="menu-arrow"></i>
             </a>
             <div class="collapse" id="ui-basic">
-            
-            </div>
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item"> <a class="nav-link" href="../../pages/ui-features/buttons.html">Buttons</a></li>
+                <li class="nav-item"> <a class="nav-link" href="../../pages/ui-features/dropdowns.html">Dropdowns</a></li>
+                <li class="nav-item"> <a class="nav-link" href="../../pages/ui-features/typography.html">Typography</a></li>
+              </ul>
+            </div> -->
           </li>
           <li class="nav-item menu-items">
             <a class="nav-link" href="/transactionhistory">
               <span class="menu-icon">
                 <i class="mdi mdi-playlist-play"></i>
               </span>
-              <span class="menu-title">Transaction History</span>
+              <span class="menu-title">Transcation History</span>
             </a>
           </li>
           <li class="nav-item menu-items">
@@ -114,7 +125,7 @@
               <span class="menu-icon">
                 <i class="mdi mdi-table-large"></i>
               </span>
-              <span class="menu-title">Monthly Transactions</span>
+              <span class="menu-title">Monthly Transcations</span>
             </a>
           </li>
           <li class="nav-item menu-items">
@@ -125,14 +136,21 @@
               <span class="menu-title">Pay Bills</span>
             </a>
           </li>
-          <li class="nav-item menu-items">
-            <a class="nav-link" href="/credpoints">
-           
+          <!-- <li class="nav-item menu-items">
+            <a class="nav-link" href="../../pages/icons/mdi.html">
+              <span class="menu-icon">
+                <i class="mdi mdi-contacts"></i>
+              </span>
+              <span class="menu-title">Icons</span>
             </a>
-          </li>
-          <li class="nav-item menu-items">
+          </li> -->
+          <!-- <li class="nav-item menu-items">
             <a class="nav-link" data-toggle="collapse" href="#auth" aria-expanded="false" aria-controls="auth">
-            
+              <span class="menu-icon">
+                <i class="mdi mdi-security"></i>
+              </span>
+              <span class="menu-title">User Pages</span>
+              <i class="menu-arrow"></i>
             </a>
             <div class="collapse" id="auth">
               <ul class="nav flex-column sub-menu">
@@ -143,12 +161,15 @@
                 <li class="nav-item"> <a class="nav-link" href="../../pages/samples/register.html"> Register </a></li>
               </ul>
             </div>
-          </li>
-          <li class="nav-item menu-items">
+          </li> -->
+          <!-- <li class="nav-item menu-items">
             <a class="nav-link" href="http://www.bootstrapdash.com/demo/corona-free/jquery/documentation/documentation.html">
-             
+              <span class="menu-icon">
+                <i class="mdi mdi-file-document-box"></i>
+              </span>
+              <span class="menu-title">Documentation</span>
             </a>
-          </li>
+          </li> -->
         </ul>
       </nav>
       <!-- partial -->
@@ -162,12 +183,17 @@
             <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
               <span class="mdi mdi-menu"></span>
             </button>
-         
+            <!-- <ul class="navbar-nav w-100">
+              <li class="nav-item w-100">
+                <form class="nav-link mt-2 mt-md-0 d-none d-lg-flex search">
+                  <input type="text" class="form-control" placeholder="Search products">
+                </form>
+              </li>
+            </ul> -->
             <ul class="navbar-nav navbar-nav-right">
               <li class="nav-item dropdown d-none d-lg-block">
                 <!-- <a class="nav-link btn btn-success create-new-button" id="createbuttonDropdown" data-toggle="dropdown" aria-expanded="false" href="#">+ Create New Project</a> -->
                 <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="createbuttonDropdown">
-                  <h6 class="p-3 mb-0">Projects</h6>
                   <div class="dropdown-divider"></div>
                   <a class="dropdown-item preview-item">
                     <div class="preview-thumbnail">
@@ -175,9 +201,7 @@
                         <i class="mdi mdi-file-outline text-primary"></i>
                       </div>
                     </div>
-                    <div class="preview-item-content">
-                      <p class="preview-subject ellipsis mb-1">Software Development</p>
-                    </div>
+                    
                   </a>
                   <div class="dropdown-divider"></div>
                   <a class="dropdown-item preview-item">
@@ -186,16 +210,12 @@
                         <i class="mdi mdi-web text-info"></i>
                       </div>
                     </div>
-                    <div class="preview-item-content">
-                      <p class="preview-subject ellipsis mb-1">UI Development</p>
-                    </div>
+                    
                   </a>
                   <div class="dropdown-divider"></div>
                   <a class="dropdown-item preview-item">
                     <div class="preview-thumbnail">
-                      <div class="preview-icon bg-dark rounded-circle">
-                        <i class="mdi mdi-layers text-danger"></i>
-                      </div>
+                        
                     </div>
                     <div class="preview-item-content">
                       <p class="preview-subject ellipsis mb-1">Software Testing</p>
@@ -211,10 +231,7 @@
                 </a>
               </li>
               <li class="nav-item dropdown border-left">
-                <a class="nav-link count-indicator dropdown-toggle" id="messageDropdown" href="#" data-toggle="dropdown" aria-expanded="false">
-                  <i class="mdi mdi-email"></i>
-                  <span class="count bg-success"></span>
-                </a>
+                
                 <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="messageDropdown">
                   <h6 class="p-3 mb-0">Messages</h6>
                   <div class="dropdown-divider"></div>
@@ -252,10 +269,7 @@
                 </div>
               </li>
               <li class="nav-item dropdown border-left">
-                <a class="nav-link count-indicator dropdown-toggle" id="notificationDropdown" href="#" data-toggle="dropdown">
-                  <i class="mdi mdi-bell"></i>
-                  <span class="count bg-danger"></span>
-                </a>
+               
                 <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="notificationDropdown">
                   <h6 class="p-3 mb-0">Notifications</h6>
                   <div class="dropdown-divider"></div>
@@ -302,8 +316,8 @@
                 <a class="nav-link" id="profileDropdown" href="#" data-toggle="dropdown">
                   <div class="navbar-profile">
                     <img class="img-xs rounded-circle" src="../../assets/images/faces/face15.jpg" alt="">
-                    <p class="mb-0 d-none d-sm-block navbar-profile-name">Devi Vara Prasad Reddy</p>
-                    <i class="mdi mdi-menu-down d-none d-sm-block"></i>
+                    <p class="mb-0 d-none d-sm-block navbar-profile-name" id="un_name"></p>
+                   
                   </div>
                 </a>
                 <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="profileDropdown">
@@ -327,7 +341,7 @@
                       </div>
                     </div>
                     <div class="preview-item-content">
-                      <a  href="/login"><p class="preview-subject mb-1">Log out</p></a> 
+                     <a  href="/login"><p class="preview-subject mb-1">Log out</p></a> 
                     </div>
                   </a>
                   <div class="dropdown-divider"></div>
@@ -338,7 +352,7 @@
             <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
               <span class="mdi mdi-format-line-spacing"></span>
             </button>
-          </div
+          </div>
         </nav>
         <!-- partial -->
         <div class="main-panel">
@@ -351,7 +365,7 @@
               </nav>
             </div>
             <div class="row">
-              <div class="col-md-4 grid-margin stretch-card">
+              <div class="col-md-12 grid-margin stretch-card">
                 <div class="card">
                   <div class="card-body">
                     <h4 class="card-title">Transaction History</h4>
@@ -419,31 +433,69 @@
                 
               </div>
             </footer>
-            <!-- partial -->
-          </div>
-          <!-- main-panel ends -->
+          <!-- partial -->
         </div>
-        <!-- page-body-wrapper ends -->
+        <!-- main-panel ends -->
       </div>
-      <!-- container-scroller -->
-      <!-- plugins:js -->
-      <script src="../../assets/vendors/js/vendor.bundle.base.js"></script>
-      <!-- endinject -->
-      <!-- Plugin js for this page -->
-      <script src="../../assets/vendors/select2/select2.min.js"></script>
-      <script src="../../assets/vendors/typeahead.js/typeahead.bundle.min.js"></script>
-      <!-- End plugin js for this page -->
-      <!-- inject:js -->
-      <script src="../../assets/js/off-canvas.js"></script>
-      <script src="../../assets/js/hoverable-collapse.js"></script>
-      <script src="../../assets/js/misc.js"></script>
-      <script src="../../assets/js/settings.js"></script>
-      <script src="../../assets/js/todolist.js"></script>
-      <!-- endinject -->
-      <!-- Custom js for this page -->
-      <script src="../../assets/js/file-upload.js"></script>
-      <script src="../../assets/js/typeahead.js"></script>
-      <script src="../../assets/js/select2.js"></script>
-      <!-- End custom js for this page -->
-    </body>
-  </html>
+      <!-- page-body-wrapper ends -->
+    </div>
+    <!-- container-scroller -->
+    <!-- plugins:js -->
+    <script src="../../assets/vendors/js/vendor.bundle.base.js"></script>
+    <!-- endinject -->
+    <!-- Plugin js for this page -->
+    <!-- End plugin js for this page -->
+    <!-- inject:js -->
+    <script src="../../assets/js/off-canvas.js"></script>
+    <script src="../../assets/js/hoverable-collapse.js"></script>
+    <script src="../../assets/js/misc.js"></script>
+    <script src="../../assets/js/settings.js"></script>
+    <script src="../../assets/js/todolist.js"></script>
+    <!-- endinject -->
+    <!-- Custom js for this page -->
+    <!-- End custom js for this page -->
+    <script>
+
+
+
+      // call the function
+      // api url
+      const api_url = 
+            "http://localhost:3000/getallusers";
+        
+      // Defining async function
+      async function getapi(url) {
+          
+          // Storing response
+          const response = await fetch(url);
+          
+          // Storing data in form of JSON
+          var data = await response.json();
+          console.log(data);
+          // if (response) {
+          //     hideloader();
+          // }
+         // show(data);
+      
+              if(data){
+                  // console.log(document.getElementById("Walletamountid"))
+                  
+                  
+                  // document.getElementById("Walletamountid").innerHTML = 'Rs '+data[0].wallet;
+                  // document.getElementById('credpointamountid').innerHTML = 'Rs '+data[0].Loyality_Points;
+                  // document.getElementById("referralid").innerHTML = data[0].refferal_code;
+                  document.getElementById("u_name").innerHTML = data[0].name;
+                  document.getElementById("un_name").innerHTML = data[0].name;
+      
+                  
+                  
+                  
+                  
+              }
+      
+      }
+      // Calling that async function
+      getapi(api_url);
+          </script>
+  </body>
+</html>

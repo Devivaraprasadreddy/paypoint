@@ -381,7 +381,7 @@
             </div>
             
             <div class="row">
-              <div class="col-lg-6 grid-margin stretch-card">
+              <div class="col-lg-12 grid-margin stretch-card">
                 <div class="card">
                   <div class="card-body">
                   
@@ -469,7 +469,7 @@
               </div>
             
               
-              <div class="col-lg-12 grid-margin stretch-card">
+              <!-- <div class="col-lg-12 grid-margin stretch-card">
                 <div class="card">
                   <div class="card-body">
                     <h4 class="card-title">Striped Table</h4>
@@ -810,7 +810,7 @@
                 </div>
               </div>
             </div>
-          </div>
+          </div> -->
           <!-- content-wrapper ends -->
           <!-- partial:../../partials/_footer.html -->
           <footer class="footer">
@@ -869,9 +869,10 @@
                   
                   // document.getElementById("Walletamountid").innerHTML = 'Rs '+data[0].wallet;
                   // document.getElementById('credpointamountid').innerHTML = 'Rs '+data[0].Loyality_Points;
-                  // document.getElementById("referralid").innerHTML = data[0].refferal_code;
+                   document.getElementById("referralid").innerHTML = data[0].refferal_code;
                   document.getElementById("u_name").innerHTML = data[0].name;
                   document.getElementById("un_name").innerHTML = data[0].name;
+                  document.getElementById("Walletamountid").innerHtml = data.balance;
       
                   
                   

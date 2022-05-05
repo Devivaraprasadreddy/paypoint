@@ -53,6 +53,9 @@ const assignment = new mongoose.Schema({
     balance:{
         type:Number
     },
+    walletPoints:{
+        type:Number
+    }
 
 });
 

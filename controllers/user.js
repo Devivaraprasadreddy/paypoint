@@ -184,10 +184,10 @@ router.post('/cashdata',function(req,res){
     session = req.session;
     
     if(session.user){
-        console.log(session.user)
-        // console.log(req.body);
-    console.log(session.user.balance);
-    console.log("amnt"+req.body.amount);
+    //     console.log(session.user)
+    //     // console.log(req.body);
+    // console.log(session.user.balance);
+    // console.log("amnt"+req.body.amount);
 
     if(parseInt(req.body.amount) > session.user.balance){
         console.log("working")
@@ -197,7 +197,16 @@ router.post('/cashdata',function(req,res){
         res.sendStatus(500)
     }
     else{
-        // assignment.update({amount:req.body.amount},assignment,{upsert:true})
+        var balances = session.user.balance - parseInt(req.body.amount)
+        var point = parseInt(req.body.amount)/6
+        assignment.findOneAndUpdate({name:session.user.name},{$set:{balance:balances,walletPoints:point}}, function(err,docs){
+            if(err){
+                console.log(err)
+            }
+            else{
+                console.log(docs)
+            }
+        })
         // async function assignmentdata(){
         // const update = {balance:req.body.amount};
         // let doc= await assignment.findOne({email:req.body.email})
@@ -211,12 +220,6 @@ router.post('/cashdata',function(req,res){
         // console.log(doc.balance);
         // }
                    
-        cash.findOne({amount:req.body.amount},function(err,docs){
-            if(err || docs==null){
-                // var check = {
-                //     accountholdername:req.body.accountholdername,
-                //     amount:req.body.amount
-                // }
                 var obj = new cash({
                     accountholdername:req.body.accountholdername,
                     accountnumber:req.body.accountnumber,
@@ -225,11 +228,9 @@ router.post('/cashdata',function(req,res){
                     amount:req.body.amount,
                     user_email:session.user.email
                 })
-                // console.log(req.body)
-                // console.log(obj)
                 obj.save(function(err,result){
                     if(result){
-                        console.log("results"+ result);
+                        // console.log("results"+ result);
                         res.send(result);
                     }
                     else{
@@ -238,18 +239,8 @@ router.post('/cashdata',function(req,res){
                     }
                 })
             }
-            else{
-                console.log("npppppp"+docs)
-            }
-            // else{
-            //     console.log(docs)
-            //     res.sendStatus(500)
-            // }
-        })
-    // console.log("kk")
 }
     
-}
 // else{
 //     console.log("working")
 // }
