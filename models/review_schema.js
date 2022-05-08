@@ -1,7 +1,7 @@
 const mongoose=require('mongoose');
 const Capstoneproject=mongoose.Schema;
 const review=new mongoose.Schema({
-    text:{
+    rdata:{
         type:String,
         required:true
     },

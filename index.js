@@ -59,13 +59,15 @@ const connection=mongoose.connection;
 
 
 //calling the all schemas
-// const assignment = require('./models/schema.js');
-// const Transaction=require('./models/Transaction_Schema.js');
-// const usercapstone=require('./models/user_Schema.js');
-// const Loyality_Transaction=require('./models/Loyality_Schema.js');
-// const logindata=require('./models/loginschema.js');
-// const admindata=require('./models/admin_Schema.js');
-// const cash = require('./models/cash_schema.js');
+const assignment = require('./models/schema.js');
+const Transaction=require('./models/Transaction_Schema.js');
+const usercapstone=require('./models/user_Schema.js');
+const Loyality_Transaction=require('./models/Loyality_Schema.js');
+const logindata=require('./models/loginschema.js');
+const admindata=require('./models/admin_Schema.js');
+const cash = require('./models/cash_schema.js');
+
+
 
 
 //Controllers
@@ -77,6 +79,7 @@ app.use('/', userrouter);
 
 const adminrouter = require('./controllers/admin.js');
 app.use('/', adminrouter)
+
 
 //post the data to database 
 
@@ -99,7 +102,7 @@ app.use('/', adminrouter)
 //                    console.log("results"+ results);
 //                     res.send(results);
 //                 }else{
-//                     console.log(err)
+//                     console.log(err)    
 //                     res.send(err);
 //                 }
 //             })
@@ -113,79 +116,34 @@ app.use('/', adminrouter)
 
 
 // app.post('/cashdata',function(req,res){
-//     session = req.session;
-    
-//     if(session.user){
-//         console.log(session.user)
-//         // console.log(req.body);
-//     console.log(session.user.balance);
-//     console.log("amnt"+req.body.amount);
+//     console.log(req.body);
 
-//     if(parseInt(req.body.amount) > session.user.balance){
-//         console.log("working")
-//         // res.send("working")
-//     }
-//     else if(session.user.balance == undefined){
-//         res.sendStatus(500)
-//     }
-//     else{
-//         // assignment.update({amount:req.body.amount},assignment,{upsert:true})
-//         // async function assignmentdata(){
-//         // const update = {balance:req.body.amount};
-//         // let doc= await assignment.findOne({email:req.body.email})
- 
-//         // doc.amount=session.user.balance-req.body.amount
-//         // await doc.save();
-//         // doc=await assignment.findOne();
-//         // doc.amount;
-//         // doc.balance;
-//         // console.log(doc.amount);
-//         // console.log(doc.balance);
-//         // }
-                   
-//         cash.findOne({amount:req.body.amount},function(err,docs){
-//             if(err || docs==null){
-//                 // var check = {
-//                 //     accountholdername:req.body.accountholdername,
-//                 //     amount:req.body.amount
-//                 // }
-//                 var obj = new cash({
-//                     accountholdername:req.body.accountholdername,
-//                     accountnumber:req.body.accountnumber,
-//                     branchname:req.body.branchname,
-//                     ifsccode:req.body.ifsccode,
-//                     amount:req.body.amount,
-//                     user_email:session.user.email
-//                 })
-//                 // console.log(req.body)
-//                 // console.log(obj)
-//                 obj.save(function(err,result){
-//                     if(result){
-//                         console.log("results"+ result);
-//                         res.send(result);
-//                     }
-//                     else{
-//                         console.log(err)
-//                         res.send(err);
-//                     }
-//                 })
-//             }
-//             else{
-//                 console.log("npppppp"+docs)
-//             }
-//             // else{
-//             //     console.log(docs)
-//             //     res.sendStatus(500)
-//             // }
-//         })
-//     // console.log("kk")
-// }
-    
-// }
-// // else{
-// //     console.log("working")
-// // }
-//  })
+//     var obj = new cash({
+//         accountholdername:req.body.accountholdername,
+//         accountnumber:req.body.accountnumber,
+//         branchname:req.body.branchname,
+//         ifsccode:req.body.ifsccode,
+//         amount:req.body.amount,
+//     })
+//     cash.find({},function(err,docs){
+//         if(err || docs==null){
+//             console.log(err)
+//             obj.save(function(err,result){
+//                 if(results){
+//                     console.log("results"+ results);
+//                     res.send(result);
+//                 }
+//                 else{
+//                     console.log(err)
+//                     res.send(err);
+//                 }
+//             })
+//         }
+//         else{
+//             res.sendStatus(500)
+//         }
+//     })
+// })
 //login checking
 
 //post the data to database
@@ -326,7 +284,7 @@ app.use('/', adminrouter)
 //     res.sendFile(__dirname + '/template/pages/samples/terms.html');
 // });
 
-// //home page
+//home page
 // app.get('/home',function(req,res){
 //     session = req.session;
 //     if(session.user){
@@ -416,45 +374,25 @@ app.use('/', adminrouter)
 //     res.redirect("/home");
 // });
 // app.get("/addcreditaccount", function(req,res){
-//     // res.sendFile(__dirname + "/template/pages/forms/basic_elements.html");
+//     res.sendFile(__dirname + "/template/pages/forms/basic_elements.html");
 //     // res.redirect("/addcreditaccount");
-//     session = req.session;
-//     if(session.user){
-//         res.sendFile(__dirname+'/template/pages/forms/basic_elements.html');
-//     }else{
-//         res.redirect("/login");
-//     }
 // });
 // app.get("/monthlytransaction", function(req,res){
-//     // res.sendFile(__dirname + "/template/pages/tables/basic-table.html");
+//     res.sendFile(__dirname + "/template/pages/tables/basic-table.html");
 //     // res.redirect("/monthlytransaction");
-//     session = req.session;
-//     if(session.user){
-//         res.sendFile(__dirname+'//template/pages/tables/basic-table.html');
-//     }else{
-//         res.redirect("/login");
-//     }
 // });
 // app.get("/transactionhistory", function(req,res){
-//     // res.sendFile(__dirname + "/template/pages/icons/mdi.html");
+//     res.sendFile(__dirname + "/template/pages/icons/mdi.html");
 //     // res.redirect("/transactionhistory");
-//     session = req.session;
-//     if(session.user){
-//         res.sendFile(__dirname+'/template/pages/icons/mdi.html');
-//     }else{
-//         res.redirect("/login");
-//     }
 // });
 // app.get("/credpoints", function(req,res){
-//     // res.sendFile(__dirname + "/template/pages/charts/chartjs.html");
+//     res.sendFile(__dirname + "/template/pages/charts/chartjs.html");
 //     // res.redirect("/credpoints");
-//     session = req.session;
-//     if(session.user){
-//         res.sendFile(__dirname+'/template/pages/charts/chartjs.html');
-//     }else{
-//         res.redirect("/login");
-//     }
 // });
+
+// app.get('/review',function(req,res){
+//     res.sendFile(__dirname + '/template/pages/samples/review.html')
+// })
 
 
 //admin dashboard

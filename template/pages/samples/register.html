@@ -265,10 +265,10 @@
               email: document.getElementById('email_id').value,
               number:document.getElementById('num_id').value,
               password: document.getElementById('pwd_id').value,
-              // cpassword:document.getElementById('pass1').value,
+             
   
           }
-          //console.log(data.password+"   "+ data.cpassword)
+         
           fetch('/sendData',{
               method:'POST',
               headers: {
@@ -279,10 +279,7 @@
           .then(response => response.json())
           .then(data => {
               console.log('success:', data);
-              // var tableBody = document.getElementById('tbody_id');
-              // tableBody.innerHTML = "";
-              // getapi(api_url);
-              // window.location.href="/login";
+           
           })
           .catch((error) => {
               alert("Mail ID Already Exits")
@@ -294,56 +291,7 @@
         window.location.href='/login';
       }
   
-      // load the data by call this function
-      //getdata();
-      // function getdata(){
-      //     document.getElementById('tbody_id').innerHTML ="<tr><td>sim</td><td>sim@gmail.com</td></tr";
-  
-      // }
-      // api url
-  
-    
-  // Defining async function
-  // async function getapi(url) {
       
-  //     // Storing response
-  //     const response = await fetch(url);
-      
-  //     // Storing data in form of JSON
-  //     var data = await response.json();
-  //     if (response) {
-  //        // hideloader();
-  //        //document.getElementById('tbody_id').innerHTML ="<tr><td>sim</td><td>sim@gmail.com</td></tr";
-  //         var tableBody = document.getElementById('tbody_id');
-  //         tableBody.innerHTML = "";
-  //         for (var i = 0; i < data.length; i++) {
-  //            // str = '<tr><td>' + data[i].name + '</td><td>' + data[i].email + '</td><td>Edit/Delete</td></tr>';
-  //            // tableBody.append(str);
-  //            var row = tableBody.insertRow(0);
-  //   var cell1 = row.insertCell(0);
-  //   var cell2 = row.insertCell(1);
-  //   var cell3 = row.insertCell(2);
-  //   cell1.innerHTML = data[i].name;
-  //   cell2.innerHTML = data[i].email;
-  //   cell3.innerHTML = "<button onclick=editRow('"+data[i]._id+"')>Edit</button>| <button onclick=deleterow('"+data[i]._id+"')>Delete</button>";
-  //             }
-  
-  //     }
-
-   
-      
-
-
-  // //     function togglePassword(){
-  // //       var x=document.getElementById("pwd_id");
-  // //       if(x.type==="password"){
-  // //         x.type="text";
-  // //       }
-  // //       else{
-  // //         x.type="password";
-  // //       }
-  // //     }
-  //  }
   </script>
     <!-- endinject -->
   </body>

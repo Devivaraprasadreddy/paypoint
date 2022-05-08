@@ -151,6 +151,8 @@ router.get('/getallusers',function(req,res){
 router.get("/dashboard", function(req,res){
     res.redirect("/home");
 });
+
+
 router.get("/addcreditaccount", function(req,res){
     // res.sendFile(path.resolve + "/template/pages/forms/basic_elements.html");
     // res.redirect("/addcreditaccount");
@@ -161,6 +163,8 @@ router.get("/addcreditaccount", function(req,res){
         res.redirect("/home");
     }
 });
+
+
 router.get("/monthlytransaction", function(req,res){
     // res.sendFile(path.resolve + "/template/pages/tables/basic-table.html");
     // res.redirect("/monthlytransaction");
@@ -171,6 +175,8 @@ router.get("/monthlytransaction", function(req,res){
         res.redirect("/home");
     }
 });
+
+
 router.get("/transactionhistory", function(req,res){
     // res.sendFile(path.resolve + "/template/pages/icons/mdi.html");
     // res.redirect("/transactionhistory");
@@ -181,6 +187,8 @@ router.get("/transactionhistory", function(req,res){
         res.redirect("/home");
     }
 });
+
+
 router.get("/credpoints", function(req,res){
     // res.sendFile(path.resolve + "/template/pages/charts/chartjs.html");
     // res.redirect("/credpoints");
@@ -190,6 +198,17 @@ router.get("/credpoints", function(req,res){
     }else{
         res.redirect("/home");
     }
+});
+
+
+router.get('/review', function(req,res){
+    //  res.sendFile(path.resolve ( "template/pages/samples/review.html"));
+     session = req.session;
+     if(session.user){
+         res.sendFile(path.resolve("template/pages/samples/review.html"));
+     }else{
+         res.redirect("/home");
+     }
 });
 
 router.post('/cashdata',function(req,res){
@@ -219,18 +238,6 @@ router.post('/cashdata',function(req,res){
                 console.log(docs)
             }
         })
-        // async function assignmentdata(){
-        // const update = {balance:req.body.amount};
-        // let doc= await assignment.findOne({email:req.body.email})
- 
-        // doc.amount=session.user.balance-req.body.amount
-        // await doc.save();
-        // doc=await assignment.findOne();
-        // doc.amount;
-        // doc.balance;
-        // console.log(doc.amount);
-        // console.log(doc.balance);
-        // }
                    
                 var obj = new cash({
                     accountholdername:req.body.accountholdername,
@@ -253,9 +260,7 @@ router.post('/cashdata',function(req,res){
             }
 }
     
-// else{
-//     console.log("working")
-// }
+
  })
 
 
@@ -272,8 +277,6 @@ router.post('/user_addaccount',function(req,res){
             Month:req.body.ExpirationMonth,
             Year:req.body.year,
             balance:5000,
-            // wallet:req.body.wallet,
-            // refferal_code:req.body.refferal_code
     
         }
         var filter={
@@ -313,10 +316,46 @@ router.get('/getassignmentdata',(req,res)=>{
         }
     })
 });
+router.get('/getreviewdata',function(req,res){
+    review.updateOne(function(err,results){
+        if(err||results==null){
+            console.log(err);
+        }
+        else if(result!=undefined){
+            console.log(result);
+            res.send(result);
+        }
+    })
+})
+
+router.post('/reviewData',function(req,res){
+    console.log(req.body);
+    var obj=new review({
+        rdata:req.body.rdata,
+    })
+    review.updateOne({rdata:req.body.rdata},function(err,docs){
+        if( err||docs==null){
+            console.log(err)
+            obj.save(function(err,result){
+                if(result){
+                    console.log("results"+result);
+                    res.send(result);
+                }
+                else{
+                    console.log(err)
+                    res.send(err)
+                }
+            })
+        }
+        else{
+            res.sendStatus(500)
+        }
+    })
+});
 
 
 
-//post the data to database 
+//post the register data to database 
 
 router.post('/sendData',function(req,res){
     //res.sendFile(__dirname + '/pages/sample.html');
@@ -349,54 +388,8 @@ router.post('/sendData',function(req,res){
    
 });
 
-router.post('/reviewdata',function(req,res){
-    //res.sendFile(__dirname + '/pages/sample.html');
-    console.log(req.body);
-    //res.send(req.body);
-    var obj = new review({
-        text:req.body.text,
-       
-    })
-    review.find({}, function(err,docs){
-        if(err || docs==null){
-            console.log(err)
-            obj.save(function(err, results) {
-                if(results){
-                   console.log("results"+ results);
-                    res.send(results);
-                }else{
-                    console.log(err)
-                    res.send(err);
-                }
-            })
-        }
-        else{
-            res.sendStatus(500)
-        }
-    })
-   
-});
-router.get('/review', function(req,res){
-    // res.sendFile(path.resolve + "/template/pages/charts/chartjs.html");
-    // res.redirect("/credpoints");
-    session = req.session;
-    if(session.user){
-        res.sendFile(path.resolve('template/pages/samples/review.html'));
-    }else{
-        res.redirect("/home");
-    }
-});
 
-router.get('/reviewdata',function(req,res){
-    review.find(function(err,result){
-        if(err || result==null){
-            console.log(err)
-        }
-        else if(result!=undefined){
-            console.log(result)
-            res.send(result);
-        }
-    })
-})
+
+
 
 module.exports=router;

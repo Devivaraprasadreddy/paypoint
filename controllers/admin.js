@@ -74,15 +74,39 @@ router.get('/adminlogin',function(req,res){
 //admin dashboard
 
 router.get('/usertables',function(req,res){
-    res.sendFile(path.resolve('template/pages/tables/basic-table.html'));
+    // res.sendFile(path.resolve('template/pages/tables/basic-table.html'));
+    session = req.session;
+    if(session.user){
+        console.log(session.user)
+        res.sendFile(path.resolve('template/pages/tables/adminbasictables.html'));
+    }
+    else{
+        res.redirect('/adminlogin');
+    }
 });
 
 router.get('/charts',function(req,res){
-    res.sendFile(path.resolve('template/pages/charts/chartjs.html'));
+    // res.sendFile(path.resolve('template/pages/charts/chartjs.html'));
+    session = req.session;
+    if(session.user){
+        console.log(session.user)
+        res.sendFile(path.resolve('template/pages/charts/admii8u76chartjs.html'));
+    }
+    else{
+        res.redirect('/adminlogin');
+    }
 });
 
-router.get('/admin/dashboard',function(req,res){
-    res.sendFile(path.resolve('template/pages/samples/adminpannel.html'));
+router.get('/admin',function(req,res){
+    // res.sendFile(path.resolve('template/pages/samples/adminpannel.html'));
+    session = req.session;
+    if(session.user){
+        console.log(session.user)
+        res.sendFile(path.resolve('template/pages/samples/adminpannel.html'));
+    }
+    else{
+        res.redirect('/adminlogin');
+    }
 });
 
 

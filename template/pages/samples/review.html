@@ -347,7 +347,7 @@
                         <textarea type="text" class="form-control" id="review" placeholder="Post your Review"></textarea>
                       </div>
                       
-                      <button type="button" onclick="reviewdata()" class="btn btn-primary mr-2">Submit</button>
+                      <button type="button"onclick="reviewdata()" class="btn btn-primary mr-2">Submit</button>
                       <button class="btn btn-dark">Cancel</button>
                     </form>
                   </div>
@@ -430,8 +430,8 @@
   </body>
   <script>
     function reviewdata(){
-        var review=document.getElementById('review').value;
-        if(review==null)
+        var rdata=document.getElementById('review').value;
+        if(rdata=='')
         {
             alert("please Post the review")
             return false;
@@ -439,9 +439,9 @@
         }
         else{
             data={
-           text:document.getElementById('review').value,
+              rdata:document.getElementById('review').value,
         }
-        fetch('/reviewdata',{
+        fetch('/reviewData',{
             method:'POST',
             headers:{
                 'Content-Type':'application/json',
@@ -454,7 +454,7 @@
               
           })
           .catch((error) => {
-              alert("Done")
+              alert("Wrong")
               window.location.href='/review';
           });
         }
