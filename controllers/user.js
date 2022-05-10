@@ -141,7 +141,7 @@ router.get('/getallusers',function(req,res){
         });
     }
     else{
-        console.log(err);
+        console.log("error");
     }
 
   
@@ -333,28 +333,23 @@ router.get('/getreviewdata',function(req,res){
 });
 
 router.post('/reviewData',function(req,res){
-    console.log(req.body)
+    // console.log(req.body)
     var obj = new review({
         rdata:req.body.rdata,
+       
     })
-    review.updateMany({},function(err,docs){
-        if(err || docs==null){
-            console.log(err)
-            obj.save(function(err,result){
-                if(result){
-                    console.log("results"+result);
-                    res.send(result);
-                }
-                else{
-                    console.log(err)
-                    res.send(err)
-                }
-            })
+    obj.save(function(err,result){
+        if(result){
+             console.log("results"+ result);
+            res.send(result);
         }
         else{
-            res.sendStatus(500)
+            console.log(err)
+            res.send(err);
         }
     })
+
+
 })
 
 

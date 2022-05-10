@@ -341,13 +341,13 @@
                     <h4 class="card-title">Give Your Review</h4>
                    
                     
-                    <form>
+                    <form action="POST">
                       <div class="form-group">
                         
                         <textarea type="text" class="form-control" id="review1" placeholder="Post your Review"></textarea>
                       </div>
                       
-                      <button type="button"onclick="reviewdata()" class="btn btn-primary mr-2">Submit</button>
+                      <button type="button" class="btn btn-primary mr-2"onclick="reviewdata()">Submit</button>
                       <button class="btn btn-dark">Cancel</button>
                     </form>
                   </div>
@@ -450,7 +450,8 @@
     console.log('success:', data);
   })
   .catch((error)=>{
-    alert("wrong");
+    alert("Invalid");
+    window.location.href='/review';
   })
   
           }
