@@ -3,7 +3,7 @@ const Capstoneproject=mongoose.Schema;
 const review=new mongoose.Schema({
     rdata:{
         type:String,
-        required:true
+        
     },
 
 });

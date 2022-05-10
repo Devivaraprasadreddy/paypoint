@@ -344,7 +344,7 @@
                     <form>
                       <div class="form-group">
                         
-                        <textarea type="text" class="form-control" id="review" placeholder="Post your Review"></textarea>
+                        <textarea type="text" class="form-control" id="review1" placeholder="Post your Review"></textarea>
                       </div>
                       
                       <button type="button"onclick="reviewdata()" class="btn btn-primary mr-2">Submit</button>
@@ -426,85 +426,84 @@
     <script src="../../assets/js/typeahead.js"></script>
     <script src="../../assets/js/select2.js"></script>
     <!-- End custom js for this page -->
+
+    <script type="text/javascript">
+      function reviewdata(){
+        var rdata = document.getElementById('review1').value;
+        if(rdata==''){
+          alert("Please enter Review!")
+          return false;
+        }
+  
+        data={
+          rdata:document.getElementById('review1').value,
+        }
+  fetch('/reviewData',{
+    method:'POST',
+    headers:{
+      'Content-Type': 'application/json',
+    },
+    body:JSON.stringify(data),
+  })
+  .then(response=>response.json())
+  .then(data=>{
+    console.log('success:', data);
+  })
+  .catch((error)=>{
+    alert("wrong");
+  })
+  
+          }
+         
+  
+        
+        
+        
+      
+       
+       
+       
+       
+        
+     
+      
+  
+  
+  
+  // call the function
+  // api url
+  const api_url = 
+        "http://localhost:3000/getallusers";
+    
+  // Defining async function
+  async function getapi(url) {
+      
+      // Storing response
+      const response = await fetch(url);
+      
+      // Storing data in form of JSON
+      var data = await response.json();
+      console.log(data);
+      
+  
+          if(data){
+             
+              document.getElementById("u_name").innerHTML = data[0].name;
+              document.getElementById("un_name").innerHTML = data[0].name;
+  
+              
+              
+              
+              
+          }
+  
+  }
+  // Calling that async function
+  getapi(api_url);
+    </script>
     
   </body>
-  <script>
-    function reviewdata(){
-        var rdata=document.getElementById('review').value;
-        if(rdata=='')
-        {
-            alert("please Post the review")
-            return false;
 
-        }
-        else{
-            data={
-              rdata:document.getElementById('review').value,
-        }
-        fetch('/reviewData',{
-            method:'POST',
-            headers:{
-                'Content-Type':'application/json',
-            },
-            body:JSON.stringify(data),
-        })
-        .then(response => response.json())
-          .then(data => {
-              console.log('success:', data);
-              
-          })
-          .catch((error) => {
-              alert("Wrong")
-              window.location.href='/review';
-          });
-        }
-       
-
-      
-      
-      
-    
-     
-     
-     
-     
-      
-    }
-    
-
-
-
-// call the function
-// api url
-const api_url = 
-      "http://localhost:3000/getallusers";
-  
-// Defining async function
-async function getapi(url) {
-    
-    // Storing response
-    const response = await fetch(url);
-    
-    // Storing data in form of JSON
-    var data = await response.json();
-    console.log(data);
-    
-
-        if(data){
-           
-            document.getElementById("u_name").innerHTML = data[0].name;
-            document.getElementById("un_name").innerHTML = data[0].name;
-
-            
-            
-            
-            
-        }
-
-}
-// Calling that async function
-getapi(api_url);
-  </script>
 
 
 </html>

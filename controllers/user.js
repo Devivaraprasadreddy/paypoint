@@ -316,25 +316,29 @@ router.get('/getassignmentdata',(req,res)=>{
         }
     })
 });
+
+
+
+//review data 
 router.get('/getreviewdata',function(req,res){
-    review.updateOne(function(err,results){
-        if(err||results==null){
-            console.log(err);
+    review.find(function(err,result){
+        if(err||result==null){
+            console.log(err)
         }
         else if(result!=undefined){
             console.log(result);
             res.send(result);
         }
     })
-})
+});
 
 router.post('/reviewData',function(req,res){
-    console.log(req.body);
-    var obj=new review({
+    console.log(req.body)
+    var obj = new review({
         rdata:req.body.rdata,
     })
-    review.updateOne({rdata:req.body.rdata},function(err,docs){
-        if( err||docs==null){
+    review.updateMany({},function(err,docs){
+        if(err || docs==null){
             console.log(err)
             obj.save(function(err,result){
                 if(result){
@@ -351,7 +355,9 @@ router.post('/reviewData',function(req,res){
             res.sendStatus(500)
         }
     })
-});
+})
+
+
 
 
 
