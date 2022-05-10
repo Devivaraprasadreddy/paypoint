@@ -255,24 +255,24 @@
             <h6 class="display-4 has-line">CONTACT US</h6>
             <p class="mb-5 pb-2"></p>
 
-            <form>
+            <form action="POST">
                 <div class="row mb-4">
                     <div class="col-md-6">
                         <div class="form-group pb-1">
-                            <input type="text" class="form-control" required placeholder="Name">            
+                            <input type="text" class="form-control" placeholder="Name" id="cname">            
                         </div>
                         <div class="form-group pb-1">
-                            <input type="email" class="form-control" required placeholder="Email">          
+                            <input type="email" class="form-control"  placeholder="Email" id="cemail">          
                         </div>
                         <div class="form-group ">
-                            <input type="text" class="form-control" placeholder="Subject">
+                            <input type="text" class="form-control" placeholder="Subject" id="csub">
                         </div>
                     </div>
                     <div class="col-md-6">
-                        <textarea name="" id="" cols="" rows="7" class="form-control" required placeholder="Message"></textarea>
+                        <textarea name=""  cols="" rows="7" class="form-control"  placeholder="Message" id="cmsg"></textarea>
                     </div>
                 </div>
-                <input type="submit" class="btn btn-primary btn-block" value="Send Message">
+                <button type="button" class="btn btn-primary btn-block"  onclick="messagedata()">Send Messsage</button>
             </form>
         </div>
     </section>
@@ -300,6 +300,57 @@
 
     <!--Javascript-->
     <script type="text/javascript">
+
+   function messagedata(){
+       var cname=document.getElementById('cname').value;
+       var cemail=document.getElementById('cemail').value;
+       var csubject=document.getElementById('csub').value;
+       var cmessage=document.getElementById('cmsg').value;
+       if(cname=='' && cemail=='' && csubject=='' && cmessage=='' ){
+           alert("Please enter all Fields!")
+           return false;
+       }
+       else if(cname==''){
+           alert("Please enter name!")
+       }
+       else if(cemail==''){
+           alert("Please enter email!")
+       }
+       else if(csubject==''){
+           alert("Please enter subject!")
+       }
+       else if(cmessage==''){
+           alert("Please enter message")
+       }
+       else{
+           alert("Done")
+       }
+       data={
+           cname:document.getElementById('cname').value,
+           cemail:document.getElementById('cemail').value,
+           csubject:document.getElementById('csub').value,
+           cmessage:document.getElementById('cmsg').value,
+       }
+       fetch('/contactData',{
+           method:'POST',
+           headers:{
+           'Content-Type':'application/json',
+           },
+           body:JSON.stringify(data)
+       })
+       .then(response => response.json())
+          .then(data => {
+              console.log('success:', data);
+           
+          })
+          .catch((error) => {
+              alert("Invalid")
+              window.location.href='/#contact';
+          });
+   }
+
+
+
 const api_url = 
       "http://localhost:3000/getreviewdata";
      

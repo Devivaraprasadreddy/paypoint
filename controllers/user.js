@@ -67,6 +67,7 @@ const usercapstone=require('../models/user_Schema.js');
 const Loyality_Transaction=require('../models/Loyality_Schema.js');
 const cash = require('../models/cash_schema.js');
 const review = require('../models/review_schema.js');
+const contact = require('../models/contact_Schema.js');
 
 
 
@@ -332,6 +333,19 @@ router.get('/getreviewdata',function(req,res){
     })
 });
 
+//contact data
+router.get('/getcontactdata',function(req,res){
+    contact.find(function(err,result){
+        if(err || result==null){
+            console.log(err)
+        }
+        else if(result!=undefined){
+            console.log(result)
+            res.send(result);
+        }
+    })
+});
+
 router.post('/reviewData',function(req,res){
     // console.log(req.body)
     var obj = new review({
@@ -350,6 +364,25 @@ router.post('/reviewData',function(req,res){
     })
 
 
+})
+
+router.post('/contactData',function(req,res){
+    var obj=new contact({
+        cname:req.body.cname,
+        cemail:req.body.cemail,
+        csubject:req.body.csubject,
+        cmessage:req.body.cmessage,
+    })
+    obj.save(function(err,result){
+        if(result){
+            console.log("results"+ result);
+            res.send(result);
+        }
+        else{
+            console.log(err)
+            res.send(err)
+        }
+    })
 })
 
 
