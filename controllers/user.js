@@ -116,6 +116,7 @@ router.get('/getalltransactions',function(req,res){
 });
 
 
+// it will gets the last transactions
 router.get('/get-cash', function(req,res){
     cash.find({},function(err,docs){
       if(err){
@@ -148,12 +149,14 @@ router.get('/getallusers',function(req,res){
   
 });
 
+//dashboard page
 
 router.get("/dashboard", function(req,res){
     res.redirect("/home");
 });
 
 
+//user add the account
 router.get("/addcreditaccount", function(req,res){
     // res.sendFile(path.resolve + "/template/pages/forms/basic_elements.html");
     // res.redirect("/addcreditaccount");
@@ -166,6 +169,7 @@ router.get("/addcreditaccount", function(req,res){
 });
 
 
+//it will gets the monthly transactions
 router.get("/monthlytransaction", function(req,res){
     // res.sendFile(path.resolve + "/template/pages/tables/basic-table.html");
     // res.redirect("/monthlytransaction");
@@ -178,6 +182,7 @@ router.get("/monthlytransaction", function(req,res){
 });
 
 
+// transaction history
 router.get("/transactionhistory", function(req,res){
     // res.sendFile(path.resolve + "/template/pages/icons/mdi.html");
     // res.redirect("/transactionhistory");
@@ -189,6 +194,8 @@ router.get("/transactionhistory", function(req,res){
     }
 });
 
+
+//get credpoints
 
 router.get("/credpoints", function(req,res){
     // res.sendFile(path.resolve + "/template/pages/charts/chartjs.html");
@@ -202,6 +209,8 @@ router.get("/credpoints", function(req,res){
 });
 
 
+//users review
+
 router.get('/review', function(req,res){
     //  res.sendFile(path.resolve ( "template/pages/samples/review.html"));
      session = req.session;
@@ -212,6 +221,7 @@ router.get('/review', function(req,res){
      }
 });
 
+//post the user account data and transaction
 router.post('/cashdata',function(req,res){
     session = req.session;
     
@@ -265,6 +275,7 @@ router.post('/cashdata',function(req,res){
  })
 
 
+ // post the card data
 router.post('/user_addaccount',function(req,res){
     //    console.log(req.session);
         session = req.session;
@@ -346,6 +357,8 @@ router.get('/getcontactdata',function(req,res){
     })
 });
 
+
+//post the reviews
 router.post('/reviewData',function(req,res){
     // console.log(req.body)
     var obj = new review({
@@ -366,6 +379,8 @@ router.post('/reviewData',function(req,res){
 
 })
 
+
+//post the contact data
 router.post('/contactData',function(req,res){
     var obj=new contact({
         cname:req.body.cname,
