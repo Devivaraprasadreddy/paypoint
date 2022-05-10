@@ -67,7 +67,7 @@ const admindata=require('../models/admin_Schema.js');
 
 
 router.get('/adminlogin',function(req,res){
-    res.sendFile(path.resolve("template/pages/samples/admin login.html"));
+    res.sendFile(path.resolve("template/pages/samples/Admin Login.html"));
 });
 
 
@@ -85,20 +85,24 @@ router.get('/usertables',function(req,res){
     }
 });
 
+//it will gets user data in charts format
+
 router.get('/charts',function(req,res){
     // res.sendFile(path.resolve('template/pages/charts/chartjs.html'));
     session = req.session;
     if(session.user){
         console.log(session.user)
-        res.sendFile(path.resolve('template/pages/charts/admii8u76chartjs.html'));
+        res.sendFile(path.resolve('template/pages/charts/admincharts.html'));
     }
     else{
         res.redirect('/adminlogin');
     }
 });
 
+//it will gets the admin page
+
 router.get('/admin',function(req,res){
-    // res.sendFile(path.resolve('template/pages/samples/adminpannel.html'));
+   
     session = req.session;
     if(session.user){
         console.log(session.user)
@@ -114,18 +118,8 @@ router.get('/admin',function(req,res){
 
 
 
-router.get('/admin',function(req,res){
-    // res.sendFile(path.resolve'/template/pages/samples/adminpannel.html');
-    session = req.session;
-    if(session.user){
-        console.log(session.user)
-        res.sendFile(path.resolve('template/pages/samples/adminpannel.html'));
-    }
-    else{
-        res.redirect('/adminlogin');
-    }
-})
 
+// admin logout page
 router.get('/adminlogout',function(req,res){
     req.session.destroy();
     res.redirect('/adminlogin');
@@ -148,5 +142,7 @@ router.post('/admindata',function(req,res){
         }
     })
 });
+
+
 module.exports=router;
 

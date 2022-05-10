@@ -67,13 +67,10 @@
                   <div class="form-group">
                     <label>Password *</label>
                     <input type="password" class="form-control p_input" id="pwd_id">
-                    <i class="far fa-eye" id="togglePassword" style="margin: 0px 220px 0px; text-align:center;cursor: pointer;" aria-hidden="true"></i>
+                  
                   </div>
                   <div class="form-group d-flex align-items-center justify-content-between">
-                    <div class="form-check">
-                      <label class="form-check-label">
-                        <input type="checkbox" class="form-check-input"> Remember me </label>
-                    </div>
+                 
                     <a href="#" class="forgot-pass">Forgot password</a>
                   </div>
                   <div class="text-center">
@@ -136,8 +133,7 @@
     .then(response => response.json())
     .then(data => {
       console.log('success:', data);
-      // console.log("Hai")
-      // console.log(data)
+      
       window.location.href="/admin";
     })
     .catch((error)=>{
@@ -145,14 +141,7 @@
       })
   };
 
-  const togglePassword=document.querySelector('#togglePassword');
-  password=document.querySelector('#pwd_id');
-  togglePassword.addEventListener('click',function(e){
-    const type=password.getAttribute('type')==='password' ?'text':'password';
-    password.setAttribute('type',type);
-    this.classList.toogle('fa-eye-slash');
 
-  });
 
       </script>
 
